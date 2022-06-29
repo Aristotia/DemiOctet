@@ -1,4 +1,5 @@
 import React from "react";
+import SearchBar from "../components/SearchBar";
 import BurgerMenu from "../components/BurgerMenu";
 
 function Connection() {
@@ -8,6 +9,7 @@ function Connection() {
 
       <div className="leftside">coucou</div>
       <div className="rightside"> lol</div>
+      <SearchBar />
     </div>
   );
 }
