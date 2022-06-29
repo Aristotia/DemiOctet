@@ -96,16 +96,16 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  gap: 40px;
+  gap: 20px;
   align-items: center;
 }
 
 .rightsideregister img {
-  margin: 0.5rem;
+  margin: 1rem;
 }
 
 .rightsideregister h1 {
-  margin-top: 0;
+  margin: 0;
 }
 
 .register-button{
