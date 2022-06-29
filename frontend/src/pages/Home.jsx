@@ -1,36 +1,18 @@
-import Counter from "../components/Counter";
-import logo from "../assets/logo.svg";
+import SearchBar from "../components/SearchBar";
+import Carrousel from "../components/Carrousel";
 
 export default function Home() {
+  const arrayImg = [
+    { url: "/src/assets/image/toulouse.jpg", name: "Project 1" },
+    { url: "/src/assets/image/toulouse.jpg", name: "Project 2" },
+    { url: "/src/assets/image/toulouse.jpg", name: "Project 3" },
+    { url: "/src/assets/image/toulouse.jpg", name: "Project 4" },
+  ];
+
   return (
-    <header className="App-header">
-      <img src={logo} className="App-logo" alt="logo" />
-      <p>Hello Vite + React !</p>
-
-      <Counter />
-
-      <p>
-        Edit <code>App.jsx</code>.
-      </p>
-      <p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        {" | "}
-        <a
-          className="App-link"
-          href="https://vitejs.dev/guide/features.html"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Vite Docs
-        </a>
-      </p>
-    </header>
+    <>
+      <SearchBar />
+      <Carrousel arrayImg={arrayImg} />;
+    </>
   );
 }
