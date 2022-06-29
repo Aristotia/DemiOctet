@@ -1,6 +1,8 @@
 /* eslint-disable no-console */
 /* eslint-disable react/jsx-props-no-spreading */
+
 import React, { useState } from "react";
+
 import "../assets/css/connection.css";
 import { useForm } from "react-hook-form";
 import { Navigate } from "react-router-dom";
@@ -82,12 +84,13 @@ function Connection() {
                 Connexion
               </button>
             </form>
+
             <button
               type="button"
               className="register-button"
               onClick={manageDisplay}
             >
-              <h2 className="register-title">S'enregistrer</h2>
+              <h2>S'enregistrer</h2>
             </button>
           </div>
         ) : (

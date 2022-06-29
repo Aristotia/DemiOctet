@@ -1,4 +1,5 @@
 import React from "react";
+import "../assets/css/SliderMenu.css";
 
 function SliderMenu(props) {
   const { list, category } = props;
