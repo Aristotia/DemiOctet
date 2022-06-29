@@ -5,7 +5,7 @@ class UserManager extends AbstractManager {
 
   insert(user) {
     return this.connection.query(
-      `insert into ${UserManager.table} (firstname, lastname, email, password, phone_number, status, github_address) values (?, ?, ?, ?, ?, ?)`,
+      `insert into ${UserManager.table} (firstname, lastname, password, email, phone_number, status, github_address) values (?, ?, ?, ?, ?, ?, ?)`,
       [
         user.firstname,
         user.lastname,
@@ -15,6 +15,13 @@ class UserManager extends AbstractManager {
         user.status,
         user.github_address,
       ]
+    );
+  }
+
+  findByMail(email) {
+    return this.connection.query(
+      `select * from ${UserManager.table} where email = ? `,
+      [email]
     );
   }
 

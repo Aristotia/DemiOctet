@@ -65,6 +65,12 @@ class UserController {
       // eslint-disable-next-line camelcase
       github_address,
     } = req.body;
+    console.log(req.body);
+    if (!firstname || !lastname || !email || !password) {
+      res.status(400).send({ error: "Tous les champs doivent être remplis" });
+      console.log(res);
+      return;
+    }
 
     try {
       const hash = await argon2.hash(password);
@@ -81,7 +87,7 @@ class UserController {
           github_address,
         })
         .then(([result]) => {
-          res.status(201).send({ id: result.insertId });
+          res.status(201).send({ id: result.insertId, password, email });
         })
         .catch((err) => {
           console.error(err);
@@ -109,6 +115,7 @@ class UserController {
           });
         } else {
           const { id, password: hash } = rows[0];
+          console.log(rows[0]);
 
           if (await argon2.verify(hash, password)) {
             const token = jwt.sign({ id, email }, process.env.JWT_AUTH_SECRET, {

@@ -6,6 +6,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  box-sizing: content-box;
 }
 .centralcard {
   border-radius: 10px;
@@ -23,8 +24,13 @@
   width: 50%;
   height: 100%;
 }
+
+.leftside h1 {
+  margin: 1rem;
+}
+
 .imgperso {
-  height: 70%;
+  width: 15rem;
 }
 .rightside {
   width: 50%;
