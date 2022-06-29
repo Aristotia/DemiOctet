@@ -1,0 +1,91 @@
+.homecontainer {
+  width: auto;
+  height: 100vh;
+  display: flex;
+  background: url(/src/assets/image/background.png);
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.centralcard {
+  border-radius: 10px;
+  background: #e0e0e085;
+  height: 70%;
+  width: 80%;
+  display: flex;
+}
+
+.leftside {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 50%;
+  height: 100%;
+}
+.imgperso {
+  height: 70%;
+}
+.rightside {
+  width: 50%;
+  background: #e0e0e062;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  justify-content: center;
+  align-items: center;
+}
+.formconnection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+  height: 30%;
+  gap: 30px;
+  justify-content: center;
+}
+.title {
+  font-family: var(--title-font);
+  color: var(--text-color);
+  font-size: 2.5rem;
+}
+.titlepresentation {
+  font-family: var(--title-font);
+  color: var(--text-color);
+  font-size: 2.5rem;
+}
+.textpresentation {
+  font-family: var(--title-font);
+  color: var(--text-color);
+  font-size: 1.9rem;
+  width: 80%;
+}
+.hrcolor {
+  margin: 0;
+  width: 70%;
+  gap: 0;
+}
+.colortextchange {
+  color: var(--second-color);
+}
+.inputform {
+  height: 30px;
+  width: 70%;
+  border: 0;
+  border-radius: 5px;
+  padding-left: 10px;
+}
+.submitbutton {
+  width: 60%;
+  height: 2rem;
+  border: 0;
+  border-radius: 15px;
+  font-size: 15px;
+  font-family: var(--title-font);
+}
+.logo {
+  height: 60px;
+}
+.inputform:focus {
+  outline: var(--second-color);
+}

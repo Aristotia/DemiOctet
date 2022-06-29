@@ -5,8 +5,11 @@
   background-position: center;
   width: 100%;
   background-size: 100% 100%;
-  height: 90vh;
+  height: 80vh;
   background-repeat: no-repeat;
+  flex-direction: column-reverse;
+  border-radius: 2%;
+  opacity: 0.2;
 }
 .texticon {
   height: 30px;
@@ -17,7 +20,11 @@
   font-family: var(--font);
 }
 .containercarousel {
-  padding: 50px;
+  padding: 0px 0px;
+}
+.each-slide {
+  margin: 0px 150px;
+
 }
 .member-card {
   display: flex;

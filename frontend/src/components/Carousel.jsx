@@ -4,7 +4,7 @@ import "react-slideshow-image/dist/styles.css";
 import "../assets/css/carousel.css";
 import ProjectCards from "./ProjectCards";
 
-function Carrousel({ arrayImg }) {
+function Carousel({ arrayImg }) {
   // arrayimg doit etre un tableau d'object //
 
   return (
@@ -20,4 +20,4 @@ function Carrousel({ arrayImg }) {
   );
 }
 
-export default Carrousel;
+export default Carousel;
