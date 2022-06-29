@@ -7,7 +7,14 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
+:root {
+  --text-color: #153650;
+  --second-color: #e79759;
+  --additional-color-1: #f0f0f0;
+  --additional-color-2: #5abdb2;
+  --title-font: "Montserrat", sans-serif;
+  --text-font: "Hind", sans-serif;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
