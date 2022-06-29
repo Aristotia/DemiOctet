@@ -1,68 +1,54 @@
-import React from 'react'
-
+import React, { useState } from "react";
+import "../CSS/SearchBar.css";
 function SearchBar() {
+  const [keyWordlist, setKeyWordlist] = useState([]);
+  const [paramFilter, setParamFilter] = useState("");
 
-  const deleteMemberFiltred = (member) => {
-    const index = memberfiltred.indexOf(member);
-    setMemberfiltred([
-      ...memberfiltred.slice(0, index),
-      ...memberfiltred.slice(index + 1),
+  const deletekeyWordlist = (keyWord) => {
+    const index = keyWordlist.indexOf(keyWord);
+    setKeyWordlist([
+      ...keyWordlist.slice(0, index),
+      ...keyWordlist.slice(index + 1),
     ]);
   };
-  return (<form className="admin-search-bar">
-  <div className="search-bar-cont">
-    <input
-      type="text"
-      placeholder="Rechercher"
-      onChange={(event) => setParamFilter(event.target.value)}
-    />{" "}
-  </div>
-  <div className="member-list">
-    {paramFilter !== ""
-      ? memberList
-          .filter(
-            (member) =>
-              member.firstname
-                .toUpperCase()
-                .includes(paramFilter.toUpperCase()) ||
-              member.lastname
-                .toUpperCase()
-                .includes(paramFilter.toUpperCase())
-          )
-          .map((member) => (
-            <button
-              type="button"
-              className="member-item"
-              onClick={() =>
-                memberfiltred.includes(member)
-                  ? null
-                  : setMemberfiltred([...memberfiltred, member])
-              }
-            >
-              {" "}
-              {`${member.firstname}  ${member.lastname}`}{" "}
-            </button>
-          ))
-      : null}
-  </div>
-  <div className="member-filtred-list">
-    {memberfiltred !== ""
-      ? memberfiltred.map((member) => (
-          <button
-            type="button"
-            className="member-filtred-item"
-            onClick={() => {
-              deleteMemberFiltred(member);
-            }}
-          >
-            {" "}
-            {`${member.firstname}  ${member.lastname}`}{" "}
-          </button>
-        ))
-      : null}
-  </div>
-</form>
-  )
+  return (
+    <form className="search-bar">
+      <div className="search-bar-container">
+        <input
+          type="text"
+          placeholder="Rechercher"
+          onChange={(event) => setParamFilter(event.target.value)}
+        />{" "}
+        <button
+          type="button"
+          onClick={() =>
+            keyWordlist.includes(paramFilter)
+              ? null
+              : setKeyWordlist([...keyWordlist, paramFilter])
+          }
+        >
+          {" "}
+          coucou{" "}
+        </button>
+      </div>
+      <div className="key-word-filter-list">
+        {keyWordlist !== ""
+          ? keyWordlist.map((keyWord) => (
+              <button
+                type="button"
+                className="key-word-filter-item"
+                onClick={() => {
+                  deletekeyWordlist(keyWord);
+                }}
+              >
+                {`${keyWord}`}{" "}
+                <img src="https://www.placecage.com/20/20" />
+              </button>
+            ))
+          : null}
+      </div>
+    </form>
+  );
 }
 
-export default SearchBar
+export default SearchBar;
