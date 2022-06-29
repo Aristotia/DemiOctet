@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../CSS/SearchBar.css";
+
 function SearchBar() {
   const [keyWordlist, setKeyWordlist] = useState([]);
   const [paramFilter, setParamFilter] = useState("");
@@ -42,7 +43,7 @@ function SearchBar() {
                 }}
               >
                 {`${keyWord}`}{" "}
-                <img src="https://www.placecage.com/20/20" />
+                <img src="https://www.placecage.com/20/20" alt="Cross-img" />
               </button>
             ))
           : null}
