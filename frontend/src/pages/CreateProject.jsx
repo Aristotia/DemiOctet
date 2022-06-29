@@ -1,26 +1,25 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from "react";
 import { useForm } from "react-hook-form";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import StepOne from "../components/StepOne";
 import "../assets/css/createproject.css";
 import StepTwo from "../components/StepTwo";
 import StepThird from "../components/StepThird";
+import End from "../components/End";
 
 function CreateProject() {
   const { register, handleSubmit, formState } = useForm({ mode: "onTouched" });
-
-  const onSubmit = (data) => console.error(data);
+  const navigate = useNavigate();
+  const onSubmit = (data) => navigate("End");
   return (
     <div className="containerform">
       <div className="centralcardform">
-        <div className="leftside">
+        <div className="leftsideprojet">
           <h1 className="titlepresentation">
             Creation de votre <span className="colortextchange"> Projet </span>
           </h1>
-          <p className="textpresentation">
-            Merci de repondre a tout le formulaire
-          </p>
+          <p className="textpresentation">Tout les champs sont obligatoires.</p>
         </div>
         <div className="rightside">
           <form className="formProject" onSubmit={handleSubmit(onSubmit)}>
@@ -44,6 +43,7 @@ function CreateProject() {
                     <StepThird register={register} formState={formState} />
                   }
                 />
+                <Route path="End" element={<End />} />
               </Routes>
             </div>
           </form>
