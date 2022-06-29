@@ -1,19 +1,20 @@
 import React, { useState } from "react";
 import "../CSS/SearchBar.css";
-import GlobalDescriptionList from "./PlaceHolderDescription.js";
+import GlobalDescriptionList from "./PlaceHolderDescription";
 
 function SearchBar() {
-  let GlobalKeyWordList = [];
+  const GlobalKeyWordList = [];
   GlobalDescriptionList.forEach((Description) => {
     Description.split(" ")
       .map((word) => {
+        let output = word;
         if (word[word.length - 1] === "," || word[word.length - 1] === ".") {
-          word = word
+          output = word
             .split("")
             .slice(0, word.length - 1)
             .join("");
         }
-        return word.toLowerCase();
+        return output.toLowerCase();
       })
       .filter((word) => word.length > 5 && !GlobalKeyWordList.includes(word))
       .forEach((Word) => GlobalKeyWordList.push(Word));
@@ -59,7 +60,8 @@ function SearchBar() {
                   deletekeyWordlist(keyWord);
                 }}
               >
-                {`${keyWord}`} <img src="https://www.placecage.com/20/20" />
+                {`${keyWord}`}{" "}
+                <img src="https://www.placecage.com/20/20" alt="Cross logo" />
               </button>
             ))
           : null}
