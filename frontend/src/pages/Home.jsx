@@ -1,3 +1,4 @@
+import SearchBar from "../components/SearchBar";
 import Carrousel from "../components/Carrousel";
 
 export default function Home() {
@@ -8,5 +9,10 @@ export default function Home() {
     { url: "/src/assets/image/toulouse.jpg", name: "Project 4" },
   ];
 
-  return <Carrousel arrayImg={arrayImg} />;
+  return (
+    <>
+      <SearchBar />
+      <Carrousel arrayImg={arrayImg} />;
+    </>
+  );
 }
