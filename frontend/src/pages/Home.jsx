@@ -1,6 +1,6 @@
 import SearchBar from "../components/SearchBar";
-import Carrousel from "../components/Carrousel";
-import SliderMenu from "../components/SliderMenu";
+import Carrousel from "../components/Carousel";
+import Waves from "./Waves";
 
 export default function Home() {
   const arrayImg = [
@@ -13,14 +13,7 @@ export default function Home() {
   return (
     <>
       <SearchBar />
-      <SliderMenu
-        list={["cow", "tartine", "rhubarbe"]}
-        category="componentTest"
-      />
-      <SliderMenu
-        list={["crue", "brulée ", "saignante", "PARPAIIING"]}
-        category="Cuisson de tartine"
-      />
+      <Waves />
       <Carrousel arrayImg={arrayImg} />;
     </>
   );
