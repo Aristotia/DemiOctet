@@ -3,10 +3,10 @@
 
 import React, { useState } from "react";
 
-import SearchBar from "../components/SearchBar";
-import BurgerMenu from "../components/BurgerMenu";
 import "../assets/css/connection.css";
-import { set, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
+import { Navigate } from "react-router-dom";
+import axios from "axios";
 import perso from "../assets/image/perso1.png";
 import logo from "../assets/image/logo.png";
 
@@ -18,16 +18,28 @@ function Connection() {
   } = useForm();
 
   const [displayConReg, setDisplayConReg] = useState(true);
+  const [popup, setPopup] = useState(false);
 
   const manageDisplay = () => {
     setDisplayConReg(!displayConReg);
   };
 
-  const handleregister = () => {
+  const handleRegister = (data) => {
     setDisplayConReg(!displayConReg);
+    axios
+      .post(`http://localhost:5000/users/register`, console.log(data))
+      .then(() => console.log(data), setPopup(!popup))
+      .catch((error) => console.error(error));
   };
 
-  const onSubmit = (data) => console.log(data);
+  const handleConnexion = (data) => {
+    axios
+      .post(`http://localhost:5000/users/login`, data)
+      .then(() => {
+        Navigate("/home", { replace: true });
+      })
+      .catch((error) => console.error(error));
+  };
   return (
     <div className="homecontainer">
       <div className="centralcard">
@@ -47,7 +59,10 @@ function Connection() {
 
             <h1 className="title">Connexion</h1>
 
-            <form className="formconnection" onSubmit={handleSubmit(onSubmit)}>
+            <form
+              className="formconnection"
+              onSubmit={handleSubmit(handleConnexion)}
+            >
               <input
                 className="inputformlogin"
                 placeholder="Email"
@@ -58,6 +73,7 @@ function Connection() {
               <input
                 className="inputformlogin"
                 placeholder="Password"
+                type="password"
                 autoComplete="off"
                 {...register("password", { required: true })}
               />
@@ -68,40 +84,13 @@ function Connection() {
                 Connexion
               </button>
             </form>
+
             <button
               type="button"
               className="register-button"
               onClick={manageDisplay}
             >
-              <h2 className="register-title">S'enregistrer</h2>
-        <div className="rightside">
-          <img src={logo} alt="logo" className="logo" />
-          <h1 className="title">Connexion</h1>
-
-          <form className="formconnection" onSubmit={handleSubmit(onSubmit)}>
-            <input
-              className="inputform"
-              placeholder="Email"
-              autoComplete="off"
-              {...register("email", { required: true })}
-            />
-
-            <input
-              className="inputform"
-              placeholder="Password"
-              autoComplete="off"
-              {...register("password", { required: true })}
-            />
-
-            {errors.exampleRequired && <span>This field is required</span>}
-
-
-      <div className="leftside">coucou</div>
-      <div className="rightside"> lol</div>
-      <SearchBar />
-
-            <button type="submit" className="submitbutton">
-              Connexion
+              <h2>S'enregistrer</h2>
             </button>
           </div>
         ) : (
@@ -109,7 +98,10 @@ function Connection() {
             <img src={logo} alt="logo" className="logo" />
             <h1 className="title">S'enregistrer</h1>
 
-            <form className="formregister" onSubmit={handleSubmit(onSubmit)}>
+            <form
+              className="formregister"
+              onSubmit={handleSubmit(handleRegister)}
+            >
               <input
                 className="inputformregister"
                 placeholder="Email"
@@ -119,6 +111,7 @@ function Connection() {
 
               <input
                 className="inputformregister"
+                type="password"
                 placeholder="Password"
                 autoComplete="off"
                 {...register("password", { required: true })}
@@ -127,13 +120,13 @@ function Connection() {
                 className="inputformregister"
                 placeholder="Firstname"
                 autoComplete="off"
-                {...register("Firstname", { required: true })}
+                {...register("firstname", { required: true })}
               />
               <input
                 className="inputformregister"
                 placeholder="Lastname"
                 autoComplete="off"
-                {...register("Lastname", { required: true })}
+                {...register("lastname", { required: true })}
               />
               <input
                 className="inputformregister"
@@ -156,14 +149,23 @@ function Connection() {
 
               {errors.exampleRequired && <span>This field is required</span>}
 
-              <button
-                type="submit"
-                className="submitbutton"
-                onClick={handleregister}
-              >
+              <button type="submit" className="submitbutton">
                 S'enregistrer
               </button>
             </form>
+            {popup ? (
+              <div className="popup-container">
+                <h3>Enregistrement réussi !</h3>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setPopup(!popup);
+                  }}
+                >
+                  Fermer
+                </button>
+              </div>
+            ) : null}
           </div>
         )}
       </div>
