@@ -2,7 +2,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from "react";
 import SearchBar from "../components/SearchBar";
-import BurgerMenu from "../components/BurgerMenu";
 import "../assets/css/connection.css";
 import { useForm } from "react-hook-form";
 import perso from "../assets/image/perso1.png";
@@ -50,10 +49,9 @@ function Connection() {
 
             {errors.exampleRequired && <span>This field is required</span>}
 
-
-      <div className="leftside">coucou</div>
-      <div className="rightside"> lol</div>
-      <SearchBar />
+            <div className="leftside">coucou</div>
+            <div className="rightside"> lol</div>
+            <SearchBar />
 
             <button type="submit" className="submitbutton">
               Connexion
