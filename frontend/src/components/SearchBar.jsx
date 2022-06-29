@@ -1,19 +1,23 @@
 import React, { useState } from "react";
 import "../CSS/SearchBar.css";
-import GlobalDescriptionList from "./PlaceHolderDescription.js";
+import GlobalDescriptionList from "./PlaceHolderDescription";
 
 function SearchBar() {
-  let GlobalKeyWordList = [];
-  GlobalDescriptionList.forEach((Description) =>{
-      Description.split(" ")
-    .map((word) => {
-      if (word[word.length - 1] === "," || word[word.length - 1] === ".") {
-        word = word.split("").slice(0,word.length-1).join("");
-      }
-      return word.toLowerCase()
-    })
+  const GlobalKeyWordList = [];
+  GlobalDescriptionList.forEach((Description) => {
+    Description.split(" ")
+      .map((word) => {
+        let output = word;
+        if (word[word.length - 1] === "," || word[word.length - 1] === ".") {
+          output = word
+            .split("")
+            .slice(0, word.length - 1)
+            .join("");
+        }
+        return output.toLowerCase();
+      })
       .filter((word) => word.length > 5 && !GlobalKeyWordList.includes(word))
-      .forEach((Word) => GlobalKeyWordList.push(Word))
+      .forEach((Word) => GlobalKeyWordList.push(Word));
   });
   // console.log(GlobalKeyWordList);
   const [keyWordlist, setKeyWordlist] = useState([]);
@@ -56,7 +60,8 @@ function SearchBar() {
                   deletekeyWordlist(keyWord);
                 }}
               >
-                {`${keyWord}`} <img src="https://www.placecage.com/20/20" />
+                {`${keyWord}`}{" "}
+                <img src="https://www.placecage.com/20/20" alt="Cross logo" />
               </button>
             ))
           : null}
@@ -66,7 +71,13 @@ function SearchBar() {
           {GlobalKeyWordList.filter((keyWord) =>
             keyWord.includes(paramFilter)
           ).map((word) => (
-            <button className="key-word-item" type="button" onClick={()=>setKeyWordlist([...keyWordlist, word])}>{word}</button>
+            <button
+              className="key-word-item"
+              type="button"
+              onClick={() => setKeyWordlist([...keyWordlist, word])}
+            >
+              {word}
+            </button>
           ))}
         </div>
       ) : null}
