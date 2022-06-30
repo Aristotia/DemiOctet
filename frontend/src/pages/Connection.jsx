@@ -5,7 +5,7 @@ import React, { useState } from "react";
 
 import "../assets/css/connection.css";
 import { useForm } from "react-hook-form";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import perso from "../assets/image/perso1.png";
 import logo from "../assets/image/logo.png";
@@ -19,15 +19,15 @@ function Connection() {
 
   const [displayConReg, setDisplayConReg] = useState(true);
   const [popup, setPopup] = useState(false);
+  const navigate = useNavigate();
 
   const manageDisplay = () => {
     setDisplayConReg(!displayConReg);
   };
 
   const handleRegister = (data) => {
-    setDisplayConReg(!displayConReg);
     axios
-      .post(`http://localhost:5000/users/register`, console.log(data))
+      .post(`http://localhost:5000/users/register`, data)
       .then(() => console.log(data), setPopup(!popup))
       .catch((error) => console.error(error));
   };
@@ -36,7 +36,7 @@ function Connection() {
     axios
       .post(`http://localhost:5000/users/login`, data)
       .then(() => {
-        Navigate("/home", { replace: true });
+        navigate("/home", { replace: true });
       })
       .catch((error) => console.error(error));
   };
@@ -132,7 +132,7 @@ function Connection() {
                 className="inputformregister"
                 placeholder="Status"
                 autoComplete="off"
-                {...register("Status", { required: true })}
+                {...register("status", { required: true })}
               />
               <input
                 className="inputformregister"
@@ -144,7 +144,7 @@ function Connection() {
                 className="inputformregister"
                 placeholder="Github"
                 autoComplete="off"
-                {...register("github_adress", { required: true })}
+                {...register("github_address", { required: true })}
               />
 
               {errors.exampleRequired && <span>This field is required</span>}
@@ -160,9 +160,10 @@ function Connection() {
                   type="button"
                   onClick={() => {
                     setPopup(!popup);
+                    setDisplayConReg(!displayConReg);
                   }}
                 >
-                  Fermer
+                  <h4>Fermer</h4>
                 </button>
               </div>
             ) : null}
