@@ -1,8 +1,8 @@
 const models = require("../models");
 
-class ItemController {
+class TaskController {
   static browse = (req, res) => {
-    models.item
+    models.task
       .findAll()
       .then(([rows]) => {
         res.send(rows);
@@ -14,7 +14,7 @@ class ItemController {
   };
 
   static read = (req, res) => {
-    models.item
+    models.task
       .find(req.params.id)
       .then(([rows]) => {
         if (rows[0] == null) {
@@ -36,7 +36,7 @@ class ItemController {
 
     item.id = parseInt(req.params.id, 10);
 
-    models.item
+    models.task
       .update(item)
       .then(([result]) => {
         if (result.affectedRows === 0) {
@@ -56,7 +56,7 @@ class ItemController {
 
     // TODO validations (length, format...)
 
-    models.item
+    models.task
       .insert(item)
       .then(([result]) => {
         res.status(201).send({ ...item, id: result.insertId });
@@ -68,7 +68,7 @@ class ItemController {
   };
 
   static delete = (req, res) => {
-    models.item
+    models.task
       .delete(req.params.id)
       .then(() => {
         res.sendStatus(204);
@@ -80,4 +80,4 @@ class ItemController {
   };
 }
 
-module.exports = ItemController;
+module.exports = TaskController;
