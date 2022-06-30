@@ -1,10 +1,15 @@
 /* eslint-disable no-restricted-globals */
 /* eslint-disable no-console */
 /* eslint-disable react/jsx-props-no-spreading */
+import React from "react";
+import { useForm } from "react-hook-form";
+import SearchBar from "../components/SearchBar";
+// import BurgerMenu from "../components/BurgerMenu";
+import "../assets/css/connection.css";
 
 import React, { useEffect, useState } from "react";
 import { annotate } from "rough-notation";
-import "../assets/css/connection.css";
+import "../assets/css/connectihttps://github.com/Aristotia/DemiOctet/pull/19/conflict?name=frontend%252Fsrc%252Fpages%252FConnection.jsx&ancestor_oid=c37ba6af42e755881e39b8561ca151ea4f87eab6&base_oid=4b86caa92b0ae29b02c8e19e29366643f26fb4c8&head_oid=b98d5b74cab0cdf64c3998eba9f8fe662b0b37b4on.css";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -80,6 +85,33 @@ function Connection() {
             className="imgperso"
           />
         </div>
+        <div className="rightside">
+          <img src={logo} alt="logo" className="logo" />
+          <h1 className="title">Connexion</h1>
+
+          <form className="formconnection" onSubmit={handleSubmit(onSubmit)}>
+            <input
+              className="inputform"
+              placeholder="Email"
+              autoComplete="off"
+              {...register("email", { required: true })}
+            />
+
+            <input
+              className="inputform"
+              placeholder="Password"
+              autoComplete="off"
+              {...register("password", { required: true })}
+            />
+
+            {errors.exampleRequired && <span>This field is required</span>}
+
+            <div className="leftside">coucou</div>
+            <div className="rightside"> lol</div>
+            <SearchBar />
+
+            <button type="submit" className="submitbutton">
+              Connexion
         {displayConReg ? (
           <div
             className="rightside"

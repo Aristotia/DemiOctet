@@ -20,6 +20,8 @@
     "react-hook-form": "^7.33.0",
     "react-router-dom": "^6.3.0",
     "react-slideshow-image": "^3.7.5",
+    "react-vertical-timeline-component": "^3.5.2",
+    "react-wavify": "^1.5.7"
     "react-use": "^17.4.0",
     "react-wavify": "^1.5.7",
     "rough-notation": "^0.5.1"
