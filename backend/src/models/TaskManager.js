@@ -10,6 +10,16 @@ class TaskManager extends AbstractManager {
     );
   }
 
+  findByProjectId(id) {
+    return this.connection.query(
+      `select * from ${TaskManager.table}
+      inner join project on project.id = task.project_id
+      where project.id = ?
+      `,
+      [id]
+    );
+  }
+
   update(task) {
     return this.connection.query(
       `update ${TaskManager.table} set ? where id = ?`,

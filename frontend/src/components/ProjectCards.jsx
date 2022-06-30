@@ -8,49 +8,14 @@ import "react-vertical-timeline-component/style.min.css";
 import "../assets/css/ProjectCards.css";
 
 function ProjectCards() {
+  const [todoList, setTodoList] = useState([]);
   const [githubDataCommits, setGitHubDataCommits] = useState([]);
-  const [githubDataProjects, setGithubDataProjects] = useState([]);
+  // const [githubDataProjects, setGithubDataProjects] = useState([]);
   const [backendProjects, setbackendProjects] = useState();
+  const [backendAgencies, setbackendAgencies] = useState();
+  const [backendTechnos, setbackendTechnos] = useState();
   // const [githubUser, setGithubUser] = useState("Aristotia");
 
-  const placeholder = [
-    {
-      name: "manger",
-      desc: "pour la santé mangé 5 fruits et legumes par jours",
-    },
-    {
-      name: "manger",
-      desc: "pour la santé mangé 5 fruits et legumes par jours",
-    },
-    {
-      name: "manger",
-      desc: "pour la santé mangé 5 fruits et legumes par jours",
-    },
-    {
-      name: "manger",
-      desc: "pour la santé mangé 5 fruits et legumes par jours",
-    },
-    {
-      name: "manger",
-      desc: "pour la santé mangé 5 fruits et legumes par jours",
-    },
-    {
-      name: "manger",
-      desc: "pour la santé mangé 5 fruits et legumes par jours",
-    },
-    {
-      name: "manger",
-      desc: "pour la santé mangé 5 fruits et legumes par jours",
-    },
-    {
-      name: "manger",
-      desc: "pour la santé mangé 5 fruits et legumes par jours",
-    },
-    {
-      name: "manger",
-      desc: "pour la santé mangé 5 fruits et legumes par jours",
-    },
-  ];
   const placeholderMessage = [
     "lorem ipsum machin truc",
     "lorem ipsum machin truc",
@@ -65,10 +30,21 @@ function ProjectCards() {
 
   // TO DO ADD GITHUBUSER TO URL
 
-  const fetchGithubProjectsData = () => {
+  // const fetchGithubProjectsData = () => {
+  //   axios
+  //     .get(`https://api.github.com/repos/Aristotia/DemiOctet/`)
+  //     .then((data) => setGithubDataProjects(data.data));
+  // };
+
+  const fetchBackendTaskData = () => {
     axios
-      .get(`https://api.github.com/repos/Aristotia/DemiOctet/`)
-      .then((data) => setGithubDataProjects(data.data));
+      .get(`http://localhost:5000/tasks/projects/2`, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        setTodoList(res.data);
+      })
+      .catch((error) => console.error(error));
   };
 
   const fetchGithubCommitsData = () => {
@@ -83,37 +59,57 @@ function ProjectCards() {
       .then((data) => setbackendProjects(data.data));
   };
 
+  const fetchBackendAgenciesData = () => {
+    axios
+      .get(`http://localhost:5000/agencies`)
+      .then((data) => setbackendAgencies(data.data));
+  };
+
+  const fetchBackendTechnosData = () => {
+    axios
+      .get(`http://localhost:5000/projects/technos/2`)
+      .then((data) => setbackendTechnos(data.data));
+  };
+
   useEffect(() => {
-    fetchGithubProjectsData();
+    // fetchGithubProjectsData();
     fetchGithubCommitsData();
     fetchBackendProjectsData();
+    fetchBackendAgenciesData();
+    fetchBackendTechnosData();
+    fetchBackendTaskData();
   }, []);
   return (
     <div className="member-card">
       <div className="todo-list-projects-cards">
-        <div className="line"> </div>
         <VerticalTimeline>
-          {placeholder.map((truc) => (
+          {todoList.map((truc) => (
             <VerticalTimelineElement>
               <h1>{truc.name}</h1>
-              <h2>{truc.desc}</h2>
+              <h2>{truc.description}</h2>
             </VerticalTimelineElement>
           ))}
         </VerticalTimeline>
       </div>
-      {backendProjects && githubDataProjects && (
+      {/* && githubDataProjects */}
+      {backendProjects && backendAgencies && (
         <div className="main-section-projects-cards">
-          <div id="title">{backendProjects[0].title}</div>
-          <div id="agency">Agency </div>
-          <div id="description">{backendProjects[0].description}</div>
-          <div id="languages">Languages </div>
-          <div id="block">
+          <h1>{backendProjects[0].title}</h1>
+          <h2>{backendAgencies[16].city} </h2>
+          <div>{backendProjects[0].description}</div>
+          <div>
+            {backendTechnos &&
+              backendTechnos.map((techno) => (
+                <ul className="techno-list">
+                  <li>{techno.name}</li>
+                </ul>
+              ))}
+          </div>
+          <div>
             <div className="main-section-div">
-              <div id="status">Status </div>
-              <div id="done">
-                Done <div>{backendProjects[0].progress}%</div>
-              </div>
-              <div id="countdown"> Time remaining </div>
+              <div>Status</div>
+              <div>Done</div>
+              <div>{backendProjects[0].progress}%</div>
             </div>
           </div>
         </div>
@@ -127,7 +123,7 @@ function ProjectCards() {
             </div>
           ))}{" "}
         </div>
-        <div id="commits">Commits</div>
+        <div id="commits">Commits and Pull Requests</div>
         <div className="commits-section">
           {githubDataCommits
             ? githubDataCommits.map((commit) => (

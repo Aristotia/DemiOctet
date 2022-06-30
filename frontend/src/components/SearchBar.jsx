@@ -1,39 +1,21 @@
-import React, { useState } from "react";
-import GlobalDescriptionList from "./PlaceHolderDescription";
+import React from "react";
+
 import SliderMenu from "./SliderMenu";
 import BurgerMenu from "./BurgerMenu";
 import "../assets/css/SearchBar.css";
+import logo from "../assets/image/logo1.png";
 
-function SearchBar() {
-  const GlobalKeyWordList = [];
-  GlobalDescriptionList.forEach((Description) => {
-    Description.split(" ")
-      .map((word) => {
-        let output = word;
-        if (word[word.length - 1] === "," || word[word.length - 1] === ".") {
-          output = word
-            .split("")
-            .slice(0, word.length - 1)
-            .join("");
-        }
-        return output.toLowerCase();
-      })
-      .filter((word) => word.length > 5 && !GlobalKeyWordList.includes(word))
-      .forEach((Word) => GlobalKeyWordList.push(Word));
-  });
-  // console.log(GlobalKeyWordList);
-  const [keyWordlist, setKeyWordlist] = useState([]);
-  const [paramFilter, setParamFilter] = useState("");
-
-  const deletekeyWordlist = (keyWord) => {
-    const index = keyWordlist.indexOf(keyWord);
-    setKeyWordlist([
-      ...keyWordlist.slice(0, index),
-      ...keyWordlist.slice(index + 1),
-    ]);
-  };
+function SearchBar({
+  keyWordlist,
+  setKeyWordlist,
+  paramFilter,
+  setParamFilter,
+}) {
   return (
     <form className="search-bar">
+      <div className="searchcontainer">
+        <img src={logo} alt="logo" className="logosearchbar" />
+      </div>
       <div className="search-bar-container">
         <div id="fields">
           <SliderMenu
@@ -46,14 +28,16 @@ function SearchBar() {
             category="Cuisson de tartine"
             className="cat-slider"
           />
-          <div id="search-field">
+          <div className="search-field">
             <input
               type="text"
               placeholder="Rechercher"
+              className="inputsearchbar"
               onChange={(event) => setParamFilter(event.target.value)}
             />{" "}
             <button
               type="button"
+              className="btnsearchbar"
               onClick={() =>
                 keyWordlist.includes(paramFilter)
                   ? null
@@ -61,41 +45,10 @@ function SearchBar() {
               }
             >
               {" "}
-              coucou{" "}
+              Recherche{" "}
             </button>
           </div>
         </div>
-        <div className="key-word-filter-list">
-          {keyWordlist !== ""
-            ? keyWordlist.map((keyWord) => (
-                <button
-                  type="button"
-                  className="key-word-filter-item"
-                  onClick={() => {
-                    deletekeyWordlist(keyWord);
-                  }}
-                >
-                  {`${keyWord}`}{" "}
-                  <img src="https://www.placecage.com/20/20" alt="Cross logo" />
-                </button>
-              ))
-            : null}
-        </div>
-        {paramFilter !== "" ? (
-          <div className="key-word-list">
-            {GlobalKeyWordList.filter((keyWord) =>
-              keyWord.includes(paramFilter)
-            ).map((word) => (
-              <button
-                className="key-word-item"
-                type="button"
-                onClick={() => setKeyWordlist([...keyWordlist, word])}
-              >
-                {word}
-              </button>
-            ))}
-          </div>
-        ) : null}
       </div>
       <BurgerMenu />
     </form>
