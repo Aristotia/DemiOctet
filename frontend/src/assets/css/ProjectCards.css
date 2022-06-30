@@ -1,0 +1,27 @@
+
+.member-card > * {
+  margin: 0;
+  font-family: var(--light-font);
+}
+#name {
+  font-size: 4rem;
+  text-align: center;
+  font-family: var(--main-font);
+
+
+}
+#agency {
+  text-align: center;
+}
+#description, #languages {
+  color:antiquewhite
+}
+#status, #progress, #countdown{
+  font-family: var(--main-font);
+  color: aqua;
+}
+
+#messages, #commits{
+  font-family: var(--main-font);
+  font-size: 18px;
+}

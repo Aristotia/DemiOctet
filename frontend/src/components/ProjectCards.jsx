@@ -5,6 +5,7 @@ import {
   VerticalTimelineElement,
 } from "react-vertical-timeline-component";
 import "react-vertical-timeline-component/style.min.css";
+import "../assets/css/ProjectCards.css";
 
 function ProjectCards() {
   const [githubDataCommits, setGitHubDataCommits] = useState([]);
@@ -116,7 +117,7 @@ function ProjectCards() {
         </div>
       )}
       <div className="message-commit-section-projects-cards">
-        Messages
+        <div id="messages"> Messages</div>
         <div className="message-section">
           {placeholderMessage.map((message) => (
             <div>
@@ -124,7 +125,7 @@ function ProjectCards() {
             </div>
           ))}{" "}
         </div>
-        Commits
+        <div id="commits">Commits</div>
         <div className="commits-section">
           {githubDataCommits
             ? githubDataCommits.map((commit) => (
