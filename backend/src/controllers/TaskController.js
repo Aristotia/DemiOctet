@@ -29,6 +29,22 @@ class TaskController {
       });
   };
 
+  static readByProjectId = (req, res) => {
+    models.task
+      .findByProjectId(req.params.projectId)
+      .then(([rows]) => {
+        if (rows[0] == null) {
+          res.sendStatus(404);
+        } else {
+          res.send(rows);
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        res.sendStatus(500);
+      });
+  };
+
   static edit = (req, res) => {
     const item = req.body;
 

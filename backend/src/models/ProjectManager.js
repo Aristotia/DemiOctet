@@ -1,11 +1,11 @@
 const AbstractManager = require("./AbstractManager");
 
-class ProjectController extends AbstractManager {
+class ProjectManager extends AbstractManager {
   static table = "project";
 
   insert(project) {
     return this.connection.query(
-      `insert into ${ProjectController.table} (title, description, sector, github_address, progress, debut_date, estimated_deadline) values (?, ?, ?, ?, ?, ?, ?)`,
+      `insert into ${ProjectManager.table} (title, description, sector, github_address, progress, debut_date, estimated_deadline) values (?, ?, ?, ?, ?, ?, ?)`,
       [
         project.title,
         project.description,
@@ -20,10 +20,19 @@ class ProjectController extends AbstractManager {
 
   update(project) {
     return this.connection.query(
-      `update ${ProjectController.table} set ? where id = ?`,
+      `update ${ProjectManager.table} set ? where id = ?`,
       [project, project.id]
+    );
+  }
+
+  getTechnosProject(id) {
+    return this.connection.query(
+      `select name from techno
+    inner join techno_project on techno.id = techno_project.techno_id
+    inner join ${ProjectManager.table} on project.id = techno_project.project_id where project.id = ?`,
+      [id]
     );
   }
 }
 
-module.exports = ProjectController;
+module.exports = ProjectManager;

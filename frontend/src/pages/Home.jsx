@@ -45,7 +45,7 @@ export default function Home() {
           <Carrousel arrayImg={arrayImg} />;
         </div>
       ) : (
-        <p>vous n'etes pas connecter</p>
+        <p>vous n'etes pas connecté.e</p>
       )}
     </>
   );

@@ -25,7 +25,7 @@
 }
 .member-card {
   display: flex;
-  background-color: grey;
+  background-color: rgba(233, 230, 230, 0.8);
   flex-direction: row;
 }
 .todo-list-projects-cards {
@@ -150,12 +150,12 @@ hr {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: red;
+  background: rgb(151, 151, 151);
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #b30000;
+  background: #c0c0c0;
 }
 
 .line {

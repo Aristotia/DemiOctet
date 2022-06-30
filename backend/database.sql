@@ -164,6 +164,8 @@ UNLOCK TABLES;
 
 -- MySQL dump 10.13  Distrib 8.0.28, for Win64 (x86_64)
 --
+p
+--
 -- Host: localhost    Database: demioctet
 -- ------------------------------------------------------
 -- Server version	8.0.28-0ubuntu0.20.04.3
@@ -182,9 +184,8 @@ UNLOCK TABLES;
 --
 -- Table structure for table `collaborator_project`
 --
+--
 
-DROP TABLE IF EXISTS `collaborator_project`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `collaborator_project` (
   `collaborator_id` int NOT NULL,

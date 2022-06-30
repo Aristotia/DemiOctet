@@ -19,9 +19,9 @@ export default function Waves() {
     <div style={{ marginTop: "0px" }}>
       <WaveContainer level={9}>
         <Wave
-          fill="#00b6ad"
+          fill="#f19103"
           paused={false}
-          opacity="0.30"
+          opacity="0.80"
           options={{
             height: 20,
             amplitude: 10,
@@ -32,8 +32,8 @@ export default function Waves() {
       </WaveContainer>
       <WaveContainer level={90}>
         <Wave
-          fill="#00959e"
-          opacity="0.80"
+          fill="FF27GD"
+          opacity="0.10"
           paused={false}
           options={{
             height: 75,
@@ -45,7 +45,7 @@ export default function Waves() {
       </WaveContainer>
       <WaveContainer level={90}>
         <Wave
-          fill="#01838a"
+          fill="#DEB46E"
           paused={false}
           opacity="0.5"
           options={{
