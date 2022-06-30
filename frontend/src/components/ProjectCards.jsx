@@ -9,7 +9,7 @@ import "react-vertical-timeline-component/style.min.css";
 function ProjectCards() {
   const [githubDataCommits, setGitHubDataCommits] = useState([]);
   const [githubDataProjects, setGithubDataProjects] = useState([]);
-  const [backendProjects, setbackendProjects] = useState([]);
+  const [backendProjects, setbackendProjects] = useState();
   // const [githubUser, setGithubUser] = useState("Aristotia");
 
   const placeholder = [
@@ -100,7 +100,7 @@ function ProjectCards() {
           ))}
         </VerticalTimeline>
       </div>
-      {githubDataProjects ? (
+      {backendProjects && githubDataProjects && (
         <div className="main-section-projects-cards">
           <div>{backendProjects[0].title}</div>
           <div>Agency </div>
@@ -114,7 +114,7 @@ function ProjectCards() {
             </div>
           </div>
         </div>
-      ) : null}
+      )}
       <div className="message-commit-section-projects-cards">
         Messages
         <div className="message-section">
