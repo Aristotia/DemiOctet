@@ -1,9 +1,11 @@
 /* eslint-disable no-console */
 /* eslint-disable react/jsx-props-no-spreading */
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios/";
+import { useForm } from "react-hook-form";
+import { Navigate } from "react-router-dom";
 import SearchBar from "../components/SearchBar";
 import "../assets/css/connection.css";
-import { useForm } from "react-hook-form";
 import perso from "../assets/image/perso1.png";
 import logo from "../assets/image/logo.png";
 
@@ -14,7 +16,29 @@ function Connection() {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => console.log(data);
+  const [displayConReg, setDisplayConReg] = useState(true);
+  const [popup, setPopup] = useState(false);
+
+  const manageDisplay = () => {
+    setDisplayConReg(!displayConReg);
+  };
+
+  const handleRegister = (data) => {
+    setDisplayConReg(!displayConReg);
+    axios
+      .post(`http://localhost:5000/users/register`, console.log(data))
+      .then(() => console.log(data), setPopup(!popup))
+      .catch((error) => console.error(error));
+  };
+
+  const handleConnexion = (data) => {
+    axios
+      .post(`http://localhost:5000/users/login`, data)
+      .then(() => {
+        Navigate("/home", { replace: true });
+      })
+      .catch((error) => console.error(error));
+  };
   return (
     <div className="homecontainer">
       <div className="centralcard">
@@ -28,36 +52,124 @@ function Connection() {
           </p>
           <img src={perso} alt="perso" className="imgperso" />
         </div>
-        <div className="rightside">
-          <img src={logo} alt="logo" className="logo" />
-          <h1 className="title">Connexion</h1>
+        {displayConReg ? (
+          <div className="rightside">
+            <img src={logo} alt="logo" className="logo" />
 
-          <form className="formconnection" onSubmit={handleSubmit(onSubmit)}>
-            <input
-              className="inputform"
-              placeholder="Email"
-              autoComplete="off"
-              {...register("email", { required: true })}
-            />
+            <h1 className="title">Connexion</h1>
 
-            <input
-              className="inputform"
-              placeholder="Password"
-              autoComplete="off"
-              {...register("password", { required: true })}
-            />
+            <form
+              className="formconnection"
+              onSubmit={handleSubmit(handleConnexion)}
+            >
+              <input
+                className="inputformlogin"
+                placeholder="Email"
+                autoComplete="off"
+                {...register("email", { required: true })}
+              />
 
-            {errors.exampleRequired && <span>This field is required</span>}
+              <input
+                className="inputformlogin"
+                placeholder="Password"
+                type="password"
+                autoComplete="off"
+                {...register("password", { required: true })}
+              />
 
-            <div className="leftside">coucou</div>
-            <div className="rightside"> lol</div>
-            <SearchBar />
+              <div className="leftside">coucou</div>
+              <div className="rightside"> lol</div>
+              <SearchBar />
+              {errors.exampleRequired && <span>This field is required</span>}
 
-            <button type="submit" className="submitbutton">
-              Connexion
+              <button type="submit" className="submitbutton">
+                Connexion
+              </button>
+            </form>
+
+            <button
+              type="button"
+              className="register-button"
+              onClick={manageDisplay}
+            >
+              <h2>S'enregistrer</h2>
             </button>
-          </form>
-        </div>
+          </div>
+        ) : (
+          <div className="rightsideregister">
+            <img src={logo} alt="logo" className="logo" />
+            <h1 className="title">S'enregistrer</h1>
+
+            <form
+              className="formregister"
+              onSubmit={handleSubmit(handleRegister)}
+            >
+              <input
+                className="inputformregister"
+                placeholder="Email"
+                autoComplete="off"
+                {...register("email", { required: true })}
+              />
+
+              <input
+                className="inputformregister"
+                type="password"
+                placeholder="Password"
+                autoComplete="off"
+                {...register("password", { required: true })}
+              />
+              <input
+                className="inputformregister"
+                placeholder="Firstname"
+                autoComplete="off"
+                {...register("firstname", { required: true })}
+              />
+              <input
+                className="inputformregister"
+                placeholder="Lastname"
+                autoComplete="off"
+                {...register("lastname", { required: true })}
+              />
+              <input
+                className="inputformregister"
+                placeholder="Status"
+                autoComplete="off"
+                {...register("Status", { required: true })}
+              />
+              <input
+                className="inputformregister"
+                placeholder="Phone Number"
+                autoComplete="off"
+                {...register("phone_number", { required: true })}
+              />
+              <input
+                className="inputformregister"
+                placeholder="Github"
+                autoComplete="off"
+                {...register("github_adress", { required: true })}
+              />
+
+              {errors.exampleRequired && <span>This field is required</span>}
+
+              <button type="submit" className="submitbutton">
+                S'enregistrer
+              </button>
+            </form>
+            {popup ? (
+              <div className="popup-container">
+                <h3>Enregistrement réussi !</h3>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setPopup(!popup);
+                  }}
+                >
+                  Fermer
+                </button>
+              </div>
+            ) : null}
+          </div>
+        )}
       </div>
     </div>
   );

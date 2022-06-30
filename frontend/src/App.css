@@ -1,18 +1,30 @@
-@import url("https://fonts.googleapis.com/css2?family=Hind&family=Montserrat&display=swap");
-body {
-  margin: 0;
+
+@font-face {
+  font-family: jojo;
+  src: url("./assets/css/fonts/JosefinSans-VariableFont_wght.ttf");
+}
+@font-face {
+  font-family: jojo-l;
+  src: url("./assets/css/fonts/JosefinSans-ExtraLight.ttf");
+}
+
+  #root{
+  margin:0;
 }
 :root {
   --text-color: #153650;
   --second-color: #e79759;
   --additional-color-1: #f0f0f0;
   --additional-color-2: #5abdb2;
-  --title-font: "Montserrat";
-  --text-font: "Hind";
+  --main-font: jojo;
+  --light-font: jojo-l;
 }
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 100vw;
+  font-family: var(--main-font);
 }
 
 button {

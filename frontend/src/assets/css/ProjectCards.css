@@ -1,0 +1,15 @@
+.member-card > * {
+  margin: 0;
+  font-family: var(--light-font);
+  font-weight: 1;
+}
+#name {
+  font-size: 4rem;
+  text-align: center;
+  font-family: jojo;
+
+}
+#agency {
+  text-align: center;
+}
+#description #languages #status #progress #countdown;
