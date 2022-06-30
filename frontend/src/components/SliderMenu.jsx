@@ -4,12 +4,24 @@ import "../assets/css/SliderMenu.css";
 function SliderMenu(props) {
   const { list, category } = props;
   return (
-    <div>
-      <label htmlFor={category}>
+    <div className="labelsearchbar">
+      <label className="labeltextsearchbar" htmlFor={category}>
         {category}
+
         <select id={category}>
+          <option
+            className="optionsearchbar"
+            selected
+            disabled
+            hiddenvalue="null"
+          >
+            {" "}
+            Merci de choisir une categorie
+          </option>
           {list.map((element) => (
-            <option value={element}>{element}</option>
+            <option className="optionsearchbar" value={element}>
+              {element}
+            </option>
           ))}
         </select>
       </label>
