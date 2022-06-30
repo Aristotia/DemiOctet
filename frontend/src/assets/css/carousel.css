@@ -93,7 +93,7 @@ hr {
   width: 80%;
 }
 
-.message-section, .pull-request-section{
+.message-section, .commits-section{
   background-color: rgb(255, 255, 255);
   border-radius: 1em;
   height: 40%;
