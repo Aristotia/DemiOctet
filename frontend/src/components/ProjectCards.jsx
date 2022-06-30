@@ -91,7 +91,7 @@ function ProjectCards() {
   return (
     <div className="member-card">
       <div className="todo-list-projects-cards">
-        <div className="line">fggg </div>
+        <div className="line"> </div>
         <VerticalTimeline>
           {placeholder.map((truc) => (
             <VerticalTimelineElement>
@@ -103,15 +103,17 @@ function ProjectCards() {
       </div>
       {backendProjects && githubDataProjects && (
         <div className="main-section-projects-cards">
-          <div>{backendProjects[0].title}</div>
-          <div>Agency </div>
-          <div>{backendProjects[0].description}</div>
-          <div>Languages </div>
-          <div>
+          <div id="title">{backendProjects[0].title}</div>
+          <div id="agency">Agency </div>
+          <div id="description">{backendProjects[0].description}</div>
+          <div id="languages">Languages </div>
+          <div id="block">
             <div className="main-section-div">
-              <div>Status </div>
-              <div>Done </div>
-              <div>{backendProjects[0].progress}%</div>
+              <div id="status">Status </div>
+              <div id="done">
+                Done <div>{backendProjects[0].progress}%</div>
+              </div>
+              <div id="countdown"> Time remaining </div>
             </div>
           </div>
         </div>

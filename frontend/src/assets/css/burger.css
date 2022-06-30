@@ -5,6 +5,7 @@
   height: 30px;
   left: 36px;
   top: 36px;
+  margin: -0.5rem -2rem ;
 }
 
 /* Color/shape of burger icon bars */
@@ -19,13 +20,17 @@
 
 /* Position and sizing of clickable cross button */
 .bm-cross-button {
-  height: 24px;
-  width: 24px;
+  height: 54px;
+  width: 54px;
+  
 }
 
 /* Color/shape of close button cross */
+
 .bm-cross {
   background: #bdc3c7;
+  top: 23px;
+  right: 10px;
 }
 
 /*
@@ -35,6 +40,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
 .bm-menu-wrap {
   position: fixed;
   height: 100%;
+
 }
 
 /* General sidebar styles */

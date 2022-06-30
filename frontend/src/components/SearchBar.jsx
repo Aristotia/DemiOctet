@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import GlobalDescriptionList from "./PlaceHolderDescription";
 import SliderMenu from "./SliderMenu";
+import BurgerMenu from "./BurgerMenu";
 import "../assets/css/SearchBar.css";
 
 function SearchBar() {
@@ -34,66 +35,69 @@ function SearchBar() {
   return (
     <form className="search-bar">
       <div className="search-bar-container">
-        <SliderMenu
-          list={["cow", "tartine", "rhubarbe"]}
-          category="componentTest"
-          className="city-slider"
-        />
-        <SliderMenu
-          list={["crue", "brulée ", "saignante", "PARPAIIING"]}
-          category="Cuisson de tartine"
-          className="cat-slider"
-        />
-        <div id="search-field">
-          <input
-            type="text"
-            placeholder="Rechercher"
-            onChange={(event) => setParamFilter(event.target.value)}
-          />{" "}
-          <button
-            type="button"
-            onClick={() =>
-              keyWordlist.includes(paramFilter)
-                ? null
-                : setKeyWordlist([...keyWordlist, paramFilter])
-            }
-          >
-            {" "}
-            coucou{" "}
-          </button>
-        </div>
-      </div>
-      <div className="key-word-filter-list">
-        {keyWordlist !== ""
-          ? keyWordlist.map((keyWord) => (
-              <button
-                type="button"
-                className="key-word-filter-item"
-                onClick={() => {
-                  deletekeyWordlist(keyWord);
-                }}
-              >
-                {`${keyWord}`}{" "}
-                <img src="https://www.placecage.com/20/20" alt="Cross logo" />
-              </button>
-            ))
-          : null}
-      </div>
-      {paramFilter !== "" ? (
-        <div className="key-word-list">
-          {GlobalKeyWordList.filter((keyWord) =>
-            keyWord.includes(paramFilter)
-          ).map((word) => (
+        <div id="fields">
+          <SliderMenu
+            list={["cow", "tartine", "rhubarbe"]}
+            category="componentTest"
+            className="city-slider"
+          />
+          <SliderMenu
+            list={["crue", "brulée ", "saignante", "PARPAIIING"]}
+            category="Cuisson de tartine"
+            className="cat-slider"
+          />
+          <div id="search-field">
+            <input
+              type="text"
+              placeholder="Rechercher"
+              onChange={(event) => setParamFilter(event.target.value)}
+            />{" "}
             <button
-              className="key-word-item"
               type="button"
-              onClick={() => setKeyWordlist([...keyWordlist, word])}
+              onClick={() =>
+                keyWordlist.includes(paramFilter)
+                  ? null
+                  : setKeyWordlist([...keyWordlist, paramFilter])
+              }
             >
-              {word}
+              {" "}
+              coucou{" "}
             </button>
-          ))}
+          </div>
         </div>
-      ) : null}
+        <div className="key-word-filter-list">
+          {keyWordlist !== ""
+            ? keyWordlist.map((keyWord) => (
+                <button
+                  type="button"
+                  className="key-word-filter-item"
+                  onClick={() => {
+                    deletekeyWordlist(keyWord);
+                  }}
+                >
+                  {`${keyWord}`}{" "}
+                  <img src="https://www.placecage.com/20/20" alt="Cross logo" />
+                </button>
+              ))
+            : null}
+        </div>
+        {paramFilter !== "" ? (
+          <div className="key-word-list">
+            {GlobalKeyWordList.filter((keyWord) =>
+              keyWord.includes(paramFilter)
+            ).map((word) => (
+              <button
+                className="key-word-item"
+                type="button"
+                onClick={() => setKeyWordlist([...keyWordlist, word])}
+              >
+                {word}
+              </button>
+            ))}
+          </div>
+        ) : null}
+      </div>
+      <BurgerMenu />
     </form>
   );
 }
