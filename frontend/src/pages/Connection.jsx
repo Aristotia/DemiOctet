@@ -5,7 +5,7 @@ import React, { useState } from "react";
 
 import "../assets/css/connection.css";
 import { useForm } from "react-hook-form";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import perso from "../assets/image/perso1.png";
 import logo from "../assets/image/logo.png";
@@ -26,7 +26,6 @@ function Connection() {
   };
 
   const handleRegister = (data) => {
-    setDisplayConReg(!displayConReg);
     axios
       .post(`http://localhost:5000/users/register`, data)
       .then(() => console.log(data), setPopup(!popup))
@@ -161,9 +160,10 @@ function Connection() {
                   type="button"
                   onClick={() => {
                     setPopup(!popup);
+                    setDisplayConReg(!displayConReg);
                   }}
                 >
-                  Fermer
+                  <h4>Fermer</h4>
                 </button>
               </div>
             ) : null}

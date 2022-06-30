@@ -96,7 +96,7 @@
   outline: var(--second-color);
 }
 
-.rightsideregister{
+.rightsideregister {
   width: 50%;
   background: #e0e0e062;
   display: flex;
@@ -114,26 +114,26 @@
   margin: 0;
 }
 
-.register-button{
+.register-button {
   border: none;
   background: none;
 }
 
-.register-button h2{
+.register-button h2 {
   font-family: var(--title-font);
   color: var(--text-color);
   font-size: 1.5rem;
   text-decoration: underline;
 }
 
-.register-title{
+.register-title {
   font-family: var(--title-font);
   color: var(--text-color);
   font-size: 1rem;
   text-decoration: underline;
 }
 
-.formregister{
+.formregister {
   width: 80%;
   display: flex;
   flex-direction: column;
@@ -142,9 +142,40 @@
   border: none;
 }
 
-.inputformregister{
+.inputformregister {
   border: none;
   width: 70%;
   border-radius: 5px;
   height: 30px;
+}
+
+.popup-container {
+  position: absolute;
+  top: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--text-color);
+  color: white;
+  width: 30%;
+  height: 10%;
+  padding: 1rem;
+  border-radius: 5px;
+  -webkit-box-shadow: #fff 0 -1px 4px, #ff0 0 -2px 10px, #e79759 0 -10px 20px,
+    red 0 -18px 40px, 45px 5px 14px 5px rgba(0, 0, 0, 0);
+  box-shadow: #fff 0 -1px 4px, #ff0 0 -2px 10px, #e79759 0 -10px 20px,
+    red 0 -18px 40px, 45px 5px 14px 5px rgba(0, 0, 0, 0);
+}
+
+.popup-container button {
+  width: 50%;
+  height: 70%;
+  border: white solid 1px;
+  background: none;
+  border-radius: 5px;
+}
+
+.popup-container button h4 {
+  font-size: 1rem;
+  color: #fff;
 }
