@@ -97,18 +97,14 @@ function ProjectCards() {
           <h1>{backendProjects[0].title}</h1>
           <h2>{backendAgencies[16].city} </h2>
           <div>{backendProjects[0].description}</div>
-          <div>
-            {backendTechnos &&
-              backendTechnos.map((techno) => (
-                <ul className="techno-list">
-                  <li>{techno.name}</li>
-                </ul>
-              ))}
+          <div className="technos">
+            <ul className="techno-list">
+              {backendTechnos &&
+                backendTechnos.map((techno) => <li>{techno.name}</li>)}
+            </ul>
           </div>
           <div>
             <div className="main-section-div">
-              <div>Status</div>
-              <div>Done</div>
               <div>{backendProjects[0].progress}%</div>
             </div>
           </div>
