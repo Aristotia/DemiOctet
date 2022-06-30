@@ -1,15 +1,7 @@
-
-@font-face {
-  font-family: jojo;
-  src: url("./assets/css/fonts/JosefinSans-VariableFont_wght.ttf");
-}
-@font-face {
-  font-family: jojo-l;
-  src: url("./assets/css/fonts/JosefinSans-ExtraLight.ttf");
-}
-
-  #root{
-  margin:0;
+@import url("https://fonts.googleapis.com/css2?family=Hind&family=Montserrat&display=swap");
+body {
+  margin: 0;
+  text-align: center;
 }
 :root {
   --text-color: #153650;
@@ -32,7 +24,8 @@ button {
 }
 h1,
 h2,
-h3 {
+h3,
+p {
   margin: 0;
   padding: 0;
 }

@@ -65,6 +65,10 @@ class UserController {
       // eslint-disable-next-line camelcase
       github_address,
     } = req.body;
+    if (!firstname || !lastname || !email || !password) {
+      res.status(400).send({ error: "Tous les champs doivent être remplis" });
+      return;
+    }
 
     try {
       const hash = await argon2.hash(password);
@@ -81,7 +85,7 @@ class UserController {
           github_address,
         })
         .then(([result]) => {
-          res.status(201).send({ id: result.insertId });
+          res.status(201).send({ id: result.insertId, password, email });
         })
         .catch((err) => {
           console.error(err);
