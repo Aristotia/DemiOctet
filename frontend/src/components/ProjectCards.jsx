@@ -4,6 +4,7 @@ import {
   VerticalTimelineElement,
 } from "react-vertical-timeline-component";
 import "react-vertical-timeline-component/style.min.css";
+import "../assets/css/ProjectCards.css";
 
 function ProjectCards() {
   const placeholder = [
@@ -55,7 +56,7 @@ function ProjectCards() {
     "lorem ipsum machin truc",
     "lorem ipsum machin truc",
   ];
-  const placeholderPullRequest = [
+  const placeholderCommits = [
     "Pull request",
     "Pull request",
     "Pull request",
@@ -80,20 +81,20 @@ function ProjectCards() {
         </VerticalTimeline>
       </div>
       <div className="main-section-projects-cards">
-        <div>Name</div>
-        <div>Agency </div>
-        <div>Description </div>
-        <div>Languages </div>
+        <div id="name">Name</div>
+        <div id="agency">Agency </div>
+        <div id="description">Description </div>
+        <div id="languages">Languages </div>
         <div>
           <div className="main-section-div">
-            <div>Status </div>
-            <div>Done </div>
-            <div>Avencement </div>
+            <div id="status">Status </div>
+            <div id="progress">% </div>
+            <div id="countdown">Time remaining </div>
           </div>
         </div>
       </div>
       <div className="message-commit-section-projects-cards">
-        Messages
+        <div id="messages"> Messages</div>
         <div className="message-section">
           {placeholderMessage.map((message) => (
             <div>
@@ -101,9 +102,9 @@ function ProjectCards() {
             </div>
           ))}{" "}
         </div>
-        Pull Request
+        <div id="commits"> Last Commits</div>
         <div className="pull-request-section">
-          {placeholderPullRequest.map((pullRequest) => (
+          {placeholderCommits.map((pullRequest) => (
             <div>
               {pullRequest}
               <hr />{" "}

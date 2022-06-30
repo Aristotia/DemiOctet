@@ -1,14 +1,15 @@
-@import url("https://fonts.googleapis.com/css2?family=Hind&family=Montserrat&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,400;1,100;1,600&display=swap");
 body {
   margin: 0;
   text-align: center;
+  font-family: var(--main-font);
 }
 :root {
   --text-color: #153650;
   --second-color: #e79759;
   --additional-color-1: #f0f0f0;
   --additional-color-2: #5abdb2;
-  --title-font: "Montserrat";
+  --main-font: "Josefin Sans";
   --text-font: "Hind";
 }
 code {
