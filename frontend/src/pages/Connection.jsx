@@ -4,14 +4,18 @@
 
 import React, { useEffect, useState } from "react";
 import { annotate } from "rough-notation";
+import Confetti from "react-confetti";
 import "../assets/css/connection.css";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+
+import { useWindowSize } from "react-use";
 import perso from "../assets/image/perso1.png";
 import logo from "../assets/image/logo.png";
 
 function Connection() {
+  const { width, height } = useWindowSize();
   const {
     register,
     handleSubmit,
@@ -28,15 +32,20 @@ function Connection() {
 
   const handleRegister = (data) => {
     axios
-      .post(`http://localhost:5000/users/register`, data)
+      .post(`http://localhost:5000/users/register`, data, {
+        withCredentials: true,
+      })
       .then(() => console.log(data), setPopup(!popup))
       .catch((error) => console.error(error));
   };
 
   const handleConnexion = (data) => {
     axios
-      .post(`http://localhost:5000/users/login`, data)
-      .then(() => {
+      .post(`http://localhost:5000/users/login`, data, {
+        withCredentials: true,
+      })
+      .then((result) => {
+        console.log(result);
         navigate("/home", { replace: true });
       })
       .catch((error) => console.error(error));
@@ -53,6 +62,7 @@ function Connection() {
 
   return (
     <div className="homecontainer">
+      {popup ? <Confetti width={width} height={height} /> : null}
       <div className="centralcard">
         <div className="leftside">
           <h1
