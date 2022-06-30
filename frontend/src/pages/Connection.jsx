@@ -1,16 +1,20 @@
+/* eslint-disable no-restricted-globals */
 /* eslint-disable no-console */
 /* eslint-disable react/jsx-props-no-spreading */
-
-import React, { useState } from "react";
-
+import React, { useEffect, useState } from "react";
+import { annotate } from "rough-notation";
+import Confetti from "react-confetti";
 import "../assets/css/connection.css";
 import { useForm } from "react-hook-form";
+// import BurgerMenu from "../components/BurgerMenu";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useWindowSize } from "react-use";
 import perso from "../assets/image/perso1.png";
 import logo from "../assets/image/logo.png";
 
 function Connection() {
+  const { width, height } = useWindowSize();
   const {
     register,
     handleSubmit,
@@ -27,34 +31,70 @@ function Connection() {
 
   const handleRegister = (data) => {
     axios
-      .post(`http://localhost:5000/users/register`, data)
+      .post(`http://localhost:5000/users/register`, data, {
+        withCredentials: true,
+      })
       .then(() => console.log(data), setPopup(!popup))
       .catch((error) => console.error(error));
   };
 
   const handleConnexion = (data) => {
     axios
-      .post(`http://localhost:5000/users/login`, data)
-      .then(() => {
+      .post(`http://localhost:5000/users/login`, data, {
+        withCredentials: true,
+      })
+      .then((result) => {
+        console.log(result);
         navigate("/home", { replace: true });
       })
       .catch((error) => console.error(error));
   };
+
+  useEffect(() => {
+    const e = document.querySelector(".colortextchange");
+    const annotation = annotate(e, {
+      type: "highlight",
+      animationDuration: "1500",
+    });
+    annotation.show();
+  }, []);
+
   return (
     <div className="homecontainer">
+      {popup ? <Confetti width={width} height={height} /> : null}
       <div className="centralcard">
         <div className="leftside">
-          <h1 className="titlepresentation">
+          <h1
+            className="titlepresentation"
+            data-aos="fade-down"
+            data-aos-duration="1000"
+          >
             Bienvenue sur <span className="colortextchange"> Unknow </span>
           </h1>
-          <p className="textpresentation">
+          {}
+          <p
+            className="textpresentation"
+            data-aos="fade-down"
+            data-aos-duration="1000"
+          >
             La plateforme de management projet de{" "}
             <span className="colortextchange"> Apside </span>
           </p>
-          <img src={perso} alt="perso" className="imgperso" />
+
+          <img
+            data-aos="fade-right"
+            data-aos-duration="1000"
+            src={perso}
+            alt="perso"
+            className="imgperso"
+          />
         </div>
         {displayConReg ? (
-          <div className="rightside">
+          <div
+            className="rightside"
+            data-aos="fade-left"
+            data-aos-duration="1000"
+          >
             <img src={logo} alt="logo" className="logo" />
 
             <h1 className="title">Connexion</h1>
@@ -154,11 +194,19 @@ function Connection() {
               </button>
             </form>
             {popup ? (
-              <div className="popup-container">
+              <div
+                className="popup-container"
+                data-aos="fade-left"
+                data-aos-duration="1000"
+              >
                 <h3>Enregistrement réussi !</h3>
+                <h3>Vous pouvez vous connecter !</h3>
                 <button
                   type="button"
+                  data-aos="fade-left"
+                  data-aos-duration="1000"
                   onClick={() => {
+                    location.reload();
                     setPopup(!popup);
                     setDisplayConReg(!displayConReg);
                   }}

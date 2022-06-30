@@ -1,4 +1,5 @@
 const argon2 = require("argon2");
+
 const jwt = require("jsonwebtoken");
 const models = require("../models");
 
@@ -118,15 +119,18 @@ class UserController {
             const token = jwt.sign({ id, email }, process.env.JWT_AUTH_SECRET, {
               expiresIn: "1h",
             });
+
             res
-              .cookie("access_token", token, {
+              .cookie("usertoken", token, {
                 httpOnly: true,
-                secure: process.env.NODE_ENV === "production",
+
+                secure: false,
               })
               .status(200)
               .send({
                 id,
                 email,
+                token,
               });
           } else {
             res.status(403).send({
@@ -153,6 +157,19 @@ class UserController {
         console.error(err);
         res.sendStatus(500);
       });
+  };
+
+  static authorization = (req, res) => {
+    const token = req.cookies.usertoken;
+    if (!token) {
+      return res.sendStatus(401);
+    }
+    try {
+      jwt.verify(token, process.env.JWT_AUTH_SECRET);
+      return res.sendStatus(200);
+    } catch {
+      return res.status(401).send("Vous n'êtes pas connecter");
+    }
   };
 }
 

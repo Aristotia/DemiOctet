@@ -1,5 +1,10 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import {
+  VerticalTimeline,
+  VerticalTimelineElement,
+} from "react-vertical-timeline-component";
+import "react-vertical-timeline-component/style.min.css";
 
 function ProjectCards() {
   const [githubDataCommits, setGitHubDataCommits] = useState([]);
@@ -85,14 +90,15 @@ function ProjectCards() {
   return (
     <div className="member-card">
       <div className="todo-list-projects-cards">
-        <div className="task-list">
-          {placeholder.map((task) => (
-            <div className="task">
-              <div className="task-name-item">{task.name}</div>
-              <div className="task-desc-item">{task.desc}</div>
-            </div>
+        <div className="line">fggg </div>
+        <VerticalTimeline>
+          {placeholder.map((truc) => (
+            <VerticalTimelineElement>
+              <h1>{truc.name}</h1>
+              <h2>{truc.desc}</h2>
+            </VerticalTimelineElement>
           ))}
-        </div>
+        </VerticalTimeline>
       </div>
       {githubDataProjects ? (
         <div className="main-section-projects-cards">
