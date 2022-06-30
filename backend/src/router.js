@@ -39,6 +39,7 @@ router.delete("/collaborators/:id", CollaboratorController.delete);
 
 router.get("/tasks", TaskController.browse);
 router.get("/tasks/:id", TaskController.read);
+router.get("/tasksByProject/:projectId", TaskController.readByProjectId);
 router.put("/tasks/:id", TaskController.edit);
 router.post("/tasks", TaskController.add);
 router.delete("/tasks/:id", TaskController.delete);
