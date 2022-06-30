@@ -10,7 +10,6 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useWindowSize } from "react-use";
-import SearchBar from "../components/SearchBar";
 import perso from "../assets/image/perso1.png";
 import logo from "../assets/image/logo.png";
 
@@ -90,163 +89,134 @@ function Connection() {
             className="imgperso"
           />
         </div>
-        <div className="rightside">
-          <img src={logo} alt="logo" className="logo" />
-          <h1 className="title">Connexion</h1>
-          <form
-            className="formconnection"
-            onSubmit={handleSubmit(handleConnexion)}
+        {displayConReg ? (
+          <div
+            className="rightside"
+            data-aos="fade-left"
+            data-aos-duration="1000"
           >
-            <input
-              className="inputform"
-              placeholder="Email"
-              autoComplete="off"
-              {...register("email", { required: true })}
-            />
-          </form>
-          <input
-            className="inputform"
-            placeholder="Password"
-            autoComplete="off"
-            {...register("password", { required: true })}
-          />
-          {errors.exampleRequired && <span>This field is required</span>}
-          <div className="leftside">coucou</div>
-          <div className="rightside"> lol</div>
-          <SearchBar />
-          <button type="submit" className="submitbutton">
-            {" "}
-          </button>
-          Connexion
-          {displayConReg ? (
-            <div
-              className="rightside"
-              data-aos="fade-left"
-              data-aos-duration="1000"
+            <img src={logo} alt="logo" className="logo" />
+
+            <h1 className="title">Connexion</h1>
+
+            <form
+              className="formconnection"
+              onSubmit={handleSubmit(handleConnexion)}
             >
-              <img src={logo} alt="logo" className="logo" />
+              <input
+                className="inputformlogin"
+                placeholder="Email"
+                autoComplete="off"
+                {...register("email", { required: true })}
+              />
 
-              <h1 className="title">Connexion</h1>
+              <input
+                className="inputformlogin"
+                placeholder="Password"
+                type="password"
+                autoComplete="off"
+                {...register("password", { required: true })}
+              />
 
-              <form
-                className="formconnection"
-                onSubmit={handleSubmit(handleRegister)}
-              >
-                <input
-                  className="inputformlogin"
-                  placeholder="Email"
-                  autoComplete="off"
-                  {...register("email", { required: true })}
-                />
+              {errors.exampleRequired && <span>This field is required</span>}
 
-                <input
-                  className="inputformlogin"
-                  placeholder="Password"
-                  type="password"
-                  autoComplete="off"
-                  {...register("password", { required: true })}
-                />
-
-                {errors.exampleRequired && <span>This field is required</span>}
-
-                <button type="submit" className="submitbutton">
-                  Connexion
-                </button>
-              </form>
-
-              <button
-                type="button"
-                className="register-button"
-                onClick={manageDisplay}
-              >
-                <h2>S'enregistrer</h2>
+              <button type="submit" className="submitbutton">
+                Connexion
               </button>
-            </div>
-          ) : (
-            <div className="rightsideregister">
-              <img src={logo} alt="logo" className="logo" />
-              <h1 className="title">S'enregistrer</h1>
+            </form>
 
-              <form
-                className="formregister"
-                onSubmit={handleSubmit(handleRegister)}
+            <button
+              type="button"
+              className="register-button"
+              onClick={manageDisplay}
+            >
+              <h2>S'enregistrer</h2>
+            </button>
+          </div>
+        ) : (
+          <div className="rightsideregister">
+            <img src={logo} alt="logo" className="logo" />
+            <h1 className="title">S'enregistrer</h1>
+
+            <form
+              className="formregister"
+              onSubmit={handleSubmit(handleRegister)}
+            >
+              <input
+                className="inputformregister"
+                placeholder="Email"
+                autoComplete="off"
+                {...register("email", { required: true })}
+              />
+
+              <input
+                className="inputformregister"
+                type="password"
+                placeholder="Password"
+                autoComplete="off"
+                {...register("password", { required: true })}
+              />
+              <input
+                className="inputformregister"
+                placeholder="Firstname"
+                autoComplete="off"
+                {...register("firstname", { required: true })}
+              />
+              <input
+                className="inputformregister"
+                placeholder="Lastname"
+                autoComplete="off"
+                {...register("lastname", { required: true })}
+              />
+              <input
+                className="inputformregister"
+                placeholder="Status"
+                autoComplete="off"
+                {...register("status", { required: true })}
+              />
+              <input
+                className="inputformregister"
+                placeholder="Phone Number"
+                autoComplete="off"
+                {...register("phone_number", { required: true })}
+              />
+              <input
+                className="inputformregister"
+                placeholder="Github"
+                autoComplete="off"
+                {...register("github_address", { required: true })}
+              />
+
+              {errors.exampleRequired && <span>This field is required</span>}
+
+              <button type="submit" className="submitbutton">
+                S'enregistrer
+              </button>
+            </form>
+            {popup ? (
+              <div
+                className="popup-container"
+                data-aos="fade-left"
+                data-aos-duration="1000"
               >
-                <input
-                  className="inputformregister"
-                  placeholder="Email"
-                  autoComplete="off"
-                  {...register("email", { required: true })}
-                />
-
-                <input
-                  className="inputformregister"
-                  type="password"
-                  placeholder="Password"
-                  autoComplete="off"
-                  {...register("password", { required: true })}
-                />
-                <input
-                  className="inputformregister"
-                  placeholder="Firstname"
-                  autoComplete="off"
-                  {...register("firstname", { required: true })}
-                />
-                <input
-                  className="inputformregister"
-                  placeholder="Lastname"
-                  autoComplete="off"
-                  {...register("lastname", { required: true })}
-                />
-                <input
-                  className="inputformregister"
-                  placeholder="Status"
-                  autoComplete="off"
-                  {...register("status", { required: true })}
-                />
-                <input
-                  className="inputformregister"
-                  placeholder="Phone Number"
-                  autoComplete="off"
-                  {...register("phone_number", { required: true })}
-                />
-                <input
-                  className="inputformregister"
-                  placeholder="Github"
-                  autoComplete="off"
-                  {...register("github_address", { required: true })}
-                />
-
-                {errors.exampleRequired && <span>This field is required</span>}
-
-                <button type="submit" className="submitbutton">
-                  S'enregistrer
-                </button>
-              </form>
-              {popup ? (
-                <div
-                  className="popup-container"
+                <h3>Enregistrement réussi !</h3>
+                <h3>Vous pouvez vous connecter !</h3>
+                <button
+                  type="button"
                   data-aos="fade-left"
                   data-aos-duration="1000"
+                  onClick={() => {
+                    location.reload();
+                    setPopup(!popup);
+                    setDisplayConReg(!displayConReg);
+                  }}
                 >
-                  <h3>Enregistrement réussi !</h3>
-                  <h3>Vous pouvez vous connecter !</h3>
-                  <button
-                    type="button"
-                    data-aos="fade-left"
-                    data-aos-duration="1000"
-                    onClick={() => {
-                      location.reload();
-                      setPopup(!popup);
-                      setDisplayConReg(!displayConReg);
-                    }}
-                  >
-                    <h4>Fermer</h4>
-                  </button>
-                </div>
-              ) : null}
-            </div>
-          )}
-        </div>
+                  <h4>Fermer</h4>
+                </button>
+              </div>
+            ) : null}
+          </div>
+        )}
       </div>
     </div>
   );
