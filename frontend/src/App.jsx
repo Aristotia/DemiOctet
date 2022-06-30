@@ -1,11 +1,15 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import AOS from "aos";
 import Home from "./pages/Home";
-
 import "./App.css";
 import Connection from "./pages/Connection";
 import CreateProject from "./pages/CreateProject";
 
+import "aos/dist/aos.css";
+
 function App() {
+  AOS.init();
+
   return (
     <div className="App">
       <Router>

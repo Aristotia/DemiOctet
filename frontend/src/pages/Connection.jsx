@@ -1,8 +1,9 @@
+/* eslint-disable no-restricted-globals */
 /* eslint-disable no-console */
 /* eslint-disable react/jsx-props-no-spreading */
 
-import React, { useState } from "react";
-
+import React, { useEffect, useState } from "react";
+import { annotate } from "rough-notation";
 import "../assets/css/connection.css";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
@@ -40,21 +41,51 @@ function Connection() {
       })
       .catch((error) => console.error(error));
   };
+
+  useEffect(() => {
+    const e = document.querySelector(".colortextchange");
+    const annotation = annotate(e, {
+      type: "highlight",
+      animationDuration: "1500",
+    });
+    annotation.show();
+  }, []);
+
   return (
     <div className="homecontainer">
       <div className="centralcard">
         <div className="leftside">
-          <h1 className="titlepresentation">
+          <h1
+            className="titlepresentation"
+            data-aos="fade-down"
+            data-aos-duration="1000"
+          >
             Bienvenue sur <span className="colortextchange"> Unknow </span>
           </h1>
-          <p className="textpresentation">
+          {}
+          <p
+            className="textpresentation"
+            data-aos="fade-down"
+            data-aos-duration="1000"
+          >
             La plateforme de management projet de{" "}
             <span className="colortextchange"> Apside </span>
           </p>
-          <img src={perso} alt="perso" className="imgperso" />
+
+          <img
+            data-aos="fade-right"
+            data-aos-duration="1000"
+            src={perso}
+            alt="perso"
+            className="imgperso"
+          />
         </div>
         {displayConReg ? (
-          <div className="rightside">
+          <div
+            className="rightside"
+            data-aos="fade-left"
+            data-aos-duration="1000"
+          >
             <img src={logo} alt="logo" className="logo" />
 
             <h1 className="title">Connexion</h1>
@@ -154,11 +185,19 @@ function Connection() {
               </button>
             </form>
             {popup ? (
-              <div className="popup-container">
+              <div
+                className="popup-container"
+                data-aos="fade-left"
+                data-aos-duration="1000"
+              >
                 <h3>Enregistrement réussi !</h3>
+                <h3>Vous pouvez vous connecter !</h3>
                 <button
                   type="button"
+                  data-aos="fade-left"
+                  data-aos-duration="1000"
                   onClick={() => {
+                    location.reload();
                     setPopup(!popup);
                     setDisplayConReg(!displayConReg);
                   }}
