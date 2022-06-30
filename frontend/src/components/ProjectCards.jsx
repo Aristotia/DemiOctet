@@ -1,4 +1,5 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import {
   VerticalTimeline,
   VerticalTimelineElement,
@@ -6,44 +7,19 @@ import {
 import "react-vertical-timeline-component/style.min.css";
 
 function ProjectCards() {
-  const placeholder = [
-    {
-      name: "manger",
-      desc: "pour la santé mangé 5 fruits et legumes par jours",
-    },
-    {
-      name: "manger",
-      desc: "pour la santé mangé 5 fruits et legumes par jours",
-    },
-    {
-      name: "manger",
-      desc: "pour la santé mangé 5 fruits et legumes par jours",
-    },
-    {
-      name: "manger",
-      desc: "pour la santé mangé 5 fruits et legumes par jours",
-    },
-    {
-      name: "manger",
-      desc: "pour la santé mangé 5 fruits et legumes par jours",
-    },
-    {
-      name: "manger",
-      desc: "pour la santé mangé 5 fruits et legumes par jours",
-    },
-    {
-      name: "manger",
-      desc: "pour la santé mangé 5 fruits et legumes par jours",
-    },
-    {
-      name: "manger",
-      desc: "pour la santé mangé 5 fruits et legumes par jours",
-    },
-    {
-      name: "manger",
-      desc: "pour la santé mangé 5 fruits et legumes par jours",
-    },
-  ];
+  const [todoList, setTodoList] = useState([]);
+  useEffect(() => {
+    const projectId = 2;
+    axios
+      .get(`http://localhost:5000/tasksByProject/${projectId}`, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        setTodoList(res.data);
+      })
+      // eslint-disable-next-line no-console
+      .catch(() => console.log("cheh"));
+  }, [todoList]);
   const placeholderMessage = [
     "lorem ipsum machin truc",
     "lorem ipsum machin truc",
@@ -69,12 +45,11 @@ function ProjectCards() {
   return (
     <div className="member-card">
       <div className="todo-list-projects-cards">
-        <div className="line">fggg </div>
         <VerticalTimeline>
-          {placeholder.map((truc) => (
+          {todoList.map((truc) => (
             <VerticalTimelineElement>
               <h1>{truc.name}</h1>
-              <h2>{truc.desc}</h2>
+              <h2>{truc.description}</h2>
             </VerticalTimelineElement>
           ))}
         </VerticalTimeline>
