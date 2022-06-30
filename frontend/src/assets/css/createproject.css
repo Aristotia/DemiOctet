@@ -1,0 +1,101 @@
+.containerform {
+  width: auto;
+  height: 100vh;
+  display: flex;
+
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.leftsideprojet {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  width: 50%;
+  height: 100%;
+}
+.centralcardform {
+  border-radius: 10px;
+  background: #e0e0e085;
+  height: 70%;
+  width: 80%;
+  display: flex;
+}
+.containerstep {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: auto;
+  gap: 30px;
+  width: 70%;
+}
+.formProject {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.btn-form {
+  border: 0;
+  height: 30px;
+  width: 150px;
+  border-radius: 10px;
+  font-family: var(--text-font);
+  font-size: 1.5rem;
+  color: var(--text-color);
+  background-color: var(--second-color);
+  text-align: center;
+}
+.inputformdescription {
+  height: 70px;
+  width: 90%;
+  border: 0;
+  border-radius: 5px;
+  padding-left: 10px;
+}
+.labelform {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--text-font);
+  font-size: 1.5rem;
+  color: var();
+  width: 80%;
+}
+.inputformprojet {
+  height: 30px;
+  width: 90%;
+  border: 0;
+  border-radius: 5px;
+  padding-left: 10px;
+}
+.selectformprojet {
+  height: 30px;
+  width: 90%;
+  border: 0;
+  border-radius: 5px;
+  padding-left: 10px;
+  background-color: white;
+}
+
+.selectformprojet * {
+  font-family: var(--font);
+  font-size: 15px;
+  color: var(--text-color);
+}
+.inputformprojet:focus {
+  outline: var(--second-color);
+}
+.textredirection {
+  font-family: var(--title-font);
+  color: var(--text-color);
+  font-size: 1.9rem;
+}
+.btn-form:disabled {
+  background-color: #ce854ea1;
+}

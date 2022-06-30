@@ -6,6 +6,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  box-sizing: content-box;
 }
 .centralcard {
   border-radius: 10px;
@@ -23,8 +24,13 @@
   width: 50%;
   height: 100%;
 }
+
+.leftside h1 {
+  margin: 1rem;
+}
+
 .imgperso {
-  height: 70%;
+  width: 15rem;
 }
 .rightside {
   width: 50%;
@@ -47,7 +53,7 @@
 .title {
   font-family: var(--title-font);
   color: var(--text-color);
-  font-size: 2.5rem;
+  font-size: 2rem;
 }
 .titlepresentation {
   font-family: var(--title-font);
@@ -68,7 +74,7 @@
 .colortextchange {
   color: var(--second-color);
 }
-.inputform {
+.inputformlogin {
   height: 30px;
   width: 70%;
   border: 0;
@@ -88,4 +94,91 @@
 }
 .inputform:focus {
   outline: var(--second-color);
+}
+
+.rightsideregister {
+  width: 50%;
+  background: #e0e0e062;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 20px;
+  align-items: center;
+}
+
+.rightsideregister img {
+  margin: 1rem;
+}
+
+.rightsideregister h1 {
+  margin: 0;
+}
+
+.register-button {
+  border: none;
+  background: none;
+}
+
+.register-button h2 {
+  font-family: var(--title-font);
+  color: var(--text-color);
+  font-size: 1.5rem;
+  text-decoration: underline;
+}
+
+.register-title {
+  font-family: var(--title-font);
+  color: var(--text-color);
+  font-size: 1rem;
+  text-decoration: underline;
+}
+
+.formregister {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  border: none;
+}
+
+.inputformregister {
+  border: none;
+  width: 70%;
+  border-radius: 5px;
+  height: 30px;
+}
+
+.popup-container {
+  position: absolute;
+  top: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  background-color: var(--second-color);
+  font-family: var(--title-font);
+  color: white;
+  width: 30%;
+  height: 10%;
+  padding: 1rem;
+  border-radius: 5px;
+}
+
+.popup-container button {
+  width: 30%;
+  height: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: white solid 1px;
+  background: none;
+  border-radius: 5px;
+}
+
+.popup-container button h4 {
+  font-size: 1rem;
+  color: #fff;
+  font-family: var(--title-font);
 }

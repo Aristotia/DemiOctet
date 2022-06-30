@@ -16,10 +16,11 @@ router.put("/projects/:id", ProjectController.edit);
 router.post("/projects", ProjectController.add);
 router.delete("/projects/:id", ProjectController.delete);
 
+router.post("/users/login", UserController.login);
+router.post("/users/register", UserController.register);
 router.get("/users", UserController.browse);
 router.get("/users/:id", UserController.read);
 router.put("/users/:id", UserController.edit);
-router.post("/users", UserController.add);
 router.delete("/users/:id", UserController.delete);
 
 router.get("/agencies", AgencyController.browse);

@@ -1,3 +1,5 @@
+const argon2 = require("argon2");
+const jwt = require("jsonwebtoken");
 const models = require("../models");
 
 class UserController {
@@ -51,19 +53,93 @@ class UserController {
       });
   };
 
-  static add = (req, res) => {
-    const item = req.body;
+  static register = async (req, res) => {
+    const {
+      firstname,
+      lastname,
+      password,
+      email,
+      // eslint-disable-next-line camelcase
+      phone_number,
+      status,
+      // eslint-disable-next-line camelcase
+      github_address,
+    } = req.body;
+    if (!firstname || !lastname || !email || !password) {
+      res.status(400).send({ error: "Tous les champs doivent être remplis" });
+      return;
+    }
 
-    // TODO validations (length, format...)
+    try {
+      const hash = await argon2.hash(password);
+      models.user
+        .insert({
+          firstname,
+          lastname,
+          password: hash,
+          email,
+          // eslint-disable-next-line camelcase
+          phone_number,
+          status,
+          // eslint-disable-next-line camelcase
+          github_address,
+        })
+        .then(([result]) => {
+          res.status(201).send({ id: result.insertId, password, email });
+        })
+        .catch((err) => {
+          console.error(err);
+          res.sendStatus(500);
+        });
+    } catch (err) {
+      console.error(err);
+      res.status(500).send({ error: err.message });
+    }
+  };
+
+  static login = async (req, res) => {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+      res.status(400).send({ error: "Please specify both email and password" });
+    }
 
     models.user
-      .insert(item)
-      .then(([result]) => {
-        res.status(201).send({ ...item, id: result.insertId });
+      .findByMail(email)
+      .then(async ([rows]) => {
+        if (rows[0] == null) {
+          res.status(403).send({
+            error: "Invalid email",
+          });
+        } else {
+          const { id, password: hash } = rows[0];
+
+          if (await argon2.verify(hash, password)) {
+            const token = jwt.sign({ id, email }, process.env.JWT_AUTH_SECRET, {
+              expiresIn: "1h",
+            });
+            res
+              .cookie("access_token", token, {
+                httpOnly: true,
+                secure: process.env.NODE_ENV === "production",
+              })
+              .status(200)
+              .send({
+                id,
+                email,
+              });
+          } else {
+            res.status(403).send({
+              error: "Invalid password",
+            });
+          }
+        }
       })
       .catch((err) => {
         console.error(err);
-        res.sendStatus(500);
+        res.status(500).send({
+          error: err.message,
+        });
       });
   };
 
