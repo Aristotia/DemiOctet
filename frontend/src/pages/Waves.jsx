@@ -17,7 +17,7 @@ const WaveContainer = styled.div`
 export default function Waves() {
   return (
     <div style={{ marginTop: "0px" }}>
-      <WaveContainer level={90}>
+      <WaveContainer level={9}>
         <Wave
           fill="#00b6ad"
           paused={false}
