@@ -11,6 +11,7 @@ const {
 const router = express.Router();
 
 router.get("/projects", ProjectController.browse);
+router.get("/projects/technos/:id", ProjectController.readTechnos);
 router.get("/projects/:id", ProjectController.read);
 router.put("/projects/:id", ProjectController.edit);
 router.post("/projects", ProjectController.add);

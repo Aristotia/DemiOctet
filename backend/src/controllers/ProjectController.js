@@ -29,6 +29,22 @@ class ProjectController {
       });
   };
 
+  static readTechnos = (req, res) => {
+    models.project
+      .getTechnosProject(req.params.id)
+      .then(([rows]) => {
+        if (rows[0] == null) {
+          res.sendStatus(404);
+        } else {
+          res.send(rows);
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        res.sendStatus(500);
+      });
+  };
+
   static edit = (req, res) => {
     const item = req.body;
 
