@@ -8,8 +8,10 @@ import "react-vertical-timeline-component/style.min.css";
 
 function ProjectCards() {
   const [githubDataCommits, setGitHubDataCommits] = useState([]);
-  const [githubDataProjects, setGithubDataProjects] = useState([]);
+  // const [githubDataProjects, setGithubDataProjects] = useState([]);
   const [backendProjects, setbackendProjects] = useState();
+  const [backendAgencies, setbackendAgencies] = useState();
+  const [backendTechnos, setbackendTechnos] = useState();
   // const [githubUser, setGithubUser] = useState("Aristotia");
 
   const placeholder = [
@@ -64,11 +66,11 @@ function ProjectCards() {
 
   // TO DO ADD GITHUBUSER TO URL
 
-  const fetchGithubProjectsData = () => {
-    axios
-      .get(`https://api.github.com/repos/Aristotia/DemiOctet/`)
-      .then((data) => setGithubDataProjects(data.data));
-  };
+  // const fetchGithubProjectsData = () => {
+  //   axios
+  //     .get(`https://api.github.com/repos/Aristotia/DemiOctet/`)
+  //     .then((data) => setGithubDataProjects(data.data));
+  // };
 
   const fetchGithubCommitsData = () => {
     axios
@@ -82,10 +84,24 @@ function ProjectCards() {
       .then((data) => setbackendProjects(data.data));
   };
 
+  const fetchBackendAgenciesData = () => {
+    axios
+      .get(`http://localhost:5000/agencies`)
+      .then((data) => setbackendAgencies(data.data));
+  };
+
+  const fetchBackendTechnosData = () => {
+    axios
+      .get(`http://localhost:5000/projects/technos/2`)
+      .then((data) => setbackendTechnos(data.data));
+  };
+
   useEffect(() => {
-    fetchGithubProjectsData();
+    // fetchGithubProjectsData();
     fetchGithubCommitsData();
     fetchBackendProjectsData();
+    fetchBackendAgenciesData();
+    fetchBackendTechnosData();
   }, []);
   return (
     <div className="member-card">
@@ -100,12 +116,20 @@ function ProjectCards() {
           ))}
         </VerticalTimeline>
       </div>
-      {backendProjects && githubDataProjects && (
+      {/* && githubDataProjects */}
+      {backendProjects && backendAgencies && (
         <div className="main-section-projects-cards">
           <div>{backendProjects[0].title}</div>
-          <div>Agency </div>
+          <div>{backendAgencies[16].city} </div>
           <div>{backendProjects[0].description}</div>
-          <div>Languages </div>
+          <div>
+            {backendTechnos &&
+              backendTechnos.map((techno) => (
+                <ul>
+                  <li>{techno.name}</li>
+                </ul>
+              ))}
+          </div>
           <div>
             <div className="main-section-div">
               <div>Status </div>
@@ -124,7 +148,7 @@ function ProjectCards() {
             </div>
           ))}{" "}
         </div>
-        Commits
+        Commits and Pull Requests
         <div className="commits-section">
           {githubDataCommits
             ? githubDataCommits.map((commit) => (
