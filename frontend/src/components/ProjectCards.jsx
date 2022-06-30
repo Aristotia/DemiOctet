@@ -125,7 +125,7 @@ function ProjectCards() {
             </div>
           ))}{" "}
         </div>
-        Commits
+        <div id="commits">Commits</div>
         <div className="commits-section">
           {githubDataCommits
             ? githubDataCommits.map((commit) => (
