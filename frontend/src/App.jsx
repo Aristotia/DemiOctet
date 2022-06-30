@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 
 import "./App.css";
 import Connection from "./pages/Connection";
+import CreateProject from "./pages/CreateProject";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <Routes>
           <Route path="/home" element={<Home />} />
           <Route path="/" element={<Connection />} />
+          <Route path="/create/*" element={<CreateProject />} />
         </Routes>
       </Router>
     </div>
