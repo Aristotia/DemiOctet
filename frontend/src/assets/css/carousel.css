@@ -19,6 +19,7 @@
 }
 .containercarousel {
   padding: 0px 0px;
+  margin-top: 30px;
 }
 .each-slide {
   margin: 0px 150px;
@@ -38,16 +39,16 @@
   overflow-y: scroll;
   border-radius: 1em;
 }
-.vertical-timeline-element-content >h1{
+.vertical-timeline-element-content > h1 {
   background-color: rgb(119, 119, 143) !important ;
 }
-.vertical-timeline::before{
+.vertical-timeline::before {
   background: rgba(255, 255, 255, 0.644) !important;
 }
 
 .vertical-timeline-element-icon {
-    
-    box-shadow: 0 0 0 4px #fff, inset 0 2px 50px rgba(255, 255, 255), 0 3px 0 4px rgba(255, 255, 255, 0) !important;
+  box-shadow: 0 0 0 4px #fff, inset 0 2px 50px rgba(255, 255, 255),
+    0 3px 0 4px rgba(255, 255, 255, 0) !important;
 }
 .separator {
   border-left: 2px solid rgb(0, 0, 0);
@@ -132,8 +133,8 @@
 hr {
   width: 80%;
 }
-
-.message-section, .commits-section{
+.message-section,
+.commits-section {
   background-color: rgb(255, 255, 255);
   border-radius: 1em;
   height: 40%;
