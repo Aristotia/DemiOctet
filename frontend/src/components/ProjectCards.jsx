@@ -9,18 +9,6 @@ import "../assets/css/ProjectCards.css";
 
 function ProjectCards() {
   const [todoList, setTodoList] = useState([]);
-  useEffect(() => {
-    const projectId = 2;
-    axios
-      .get(`http://localhost:5000/tasksByProject/${projectId}`, {
-        withCredentials: true,
-      })
-      .then((res) => {
-        setTodoList(res.data);
-      })
-      // eslint-disable-next-line no-console
-      .catch(() => console.log("cheh"));
-  }, [todoList]);
   const [githubDataCommits, setGitHubDataCommits] = useState([]);
   // const [githubDataProjects, setGithubDataProjects] = useState([]);
   const [backendProjects, setbackendProjects] = useState();
@@ -47,6 +35,17 @@ function ProjectCards() {
   //     .get(`https://api.github.com/repos/Aristotia/DemiOctet/`)
   //     .then((data) => setGithubDataProjects(data.data));
   // };
+
+  const fetchBackendTaskData = () => {
+    axios
+      .get(`http://localhost:5000/tasks/projects/2`, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        setTodoList(res.data);
+      })
+      .catch((error) => console.error(error));
+  };
 
   const fetchGithubCommitsData = () => {
     axios
@@ -78,6 +77,7 @@ function ProjectCards() {
     fetchBackendProjectsData();
     fetchBackendAgenciesData();
     fetchBackendTechnosData();
+    fetchBackendTaskData();
   }, []);
   return (
     <div className="member-card">
@@ -94,21 +94,21 @@ function ProjectCards() {
       {/* && githubDataProjects */}
       {backendProjects && backendAgencies && (
         <div className="main-section-projects-cards">
-          <div>{backendProjects[0].title}</div>
-          <div>{backendAgencies[16].city} </div>
+          <h1>{backendProjects[0].title}</h1>
+          <h2>{backendAgencies[16].city} </h2>
           <div>{backendProjects[0].description}</div>
           <div>
             {backendTechnos &&
               backendTechnos.map((techno) => (
-                <ul>
+                <ul className="techno-list">
                   <li>{techno.name}</li>
                 </ul>
               ))}
           </div>
           <div>
             <div className="main-section-div">
-              <div>Status </div>
-              <div>Done </div>
+              <div>Status</div>
+              <div>Done</div>
               <div>{backendProjects[0].progress}%</div>
             </div>
           </div>

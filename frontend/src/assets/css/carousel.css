@@ -165,3 +165,9 @@ hr {
   height: 80%;
   width: 3px;
 }
+
+.techno-list{
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+}
