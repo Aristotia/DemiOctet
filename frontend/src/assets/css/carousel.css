@@ -185,3 +185,21 @@ hr {
   align-items: center;
   justify-content: space-around;
 }
+
+.progressbar-container {
+  display: flex;
+  justify-content: flex-start;
+  background-color: #e5bd69;
+}
+
+.progressbar-container h2 {
+  margin-left: 40%;
+  margin-top: 10%;
+}
+
+.progressbar-content {
+  background-color: #e79759;
+  height: 100%;
+  width: 75%;
+  border-radius: 15px;
+}
