@@ -22,7 +22,9 @@
   margin-top: 30px;
 }
 .each-slide {
-  margin: 0px 150px;
+  margin: 0px 80px;
+  height: 100%;
+  width: 90vw;
 }
 .member-card {
   display: flex;
@@ -108,8 +110,11 @@
   background-color: white;
   height: 12em;
   border-radius: 1em;
-  right: 57%;
-  width: 15%;
+  width: 100%;
+  height: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .main-section-projects-cards {
@@ -133,6 +138,7 @@
 hr {
   width: 80%;
 }
+
 .message-section,
 .commits-section {
   background-color: rgb(255, 255, 255);
@@ -166,8 +172,16 @@ hr {
   width: 3px;
 }
 
-.techno-list{
+.techno-list {
   list-style: none;
   display: flex;
+  justify-content: space-around;
+  width: 100%;
+  padding: 0;
+}
+
+.technos {
+  display: flex;
+  align-items: center;
   justify-content: space-around;
 }

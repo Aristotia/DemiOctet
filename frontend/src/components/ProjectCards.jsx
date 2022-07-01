@@ -8,7 +8,7 @@ import "react-vertical-timeline-component/style.min.css";
 import "../assets/css/ProjectCards.css";
 
 function ProjectCards() {
-  const [todoList, setTodoList] = useState([]);
+  const [backendTask, setBackendTask] = useState([]);
   const [githubDataCommits, setGitHubDataCommits] = useState([]);
   // const [githubDataProjects, setGithubDataProjects] = useState([]);
   const [backendProjects, setbackendProjects] = useState();
@@ -42,7 +42,7 @@ function ProjectCards() {
         withCredentials: true,
       })
       .then((res) => {
-        setTodoList(res.data);
+        setBackendTask(res.data);
       })
       .catch((error) => console.error(error));
   };
@@ -83,10 +83,10 @@ function ProjectCards() {
     <div className="member-card">
       <div className="todo-list-projects-cards">
         <VerticalTimeline>
-          {todoList.map((truc) => (
+          {backendTask.map((task) => (
             <VerticalTimelineElement>
-              <h1>{truc.name}</h1>
-              <h2>{truc.description}</h2>
+              <h1>{task.name}</h1>
+              <h2>{task.description}</h2>
             </VerticalTimelineElement>
           ))}
         </VerticalTimeline>
@@ -97,18 +97,14 @@ function ProjectCards() {
           <h1>{backendProjects[0].title}</h1>
           <h2>{backendAgencies[16].city} </h2>
           <div>{backendProjects[0].description}</div>
-          <div>
-            {backendTechnos &&
-              backendTechnos.map((techno) => (
-                <ul className="techno-list">
-                  <li>{techno.name}</li>
-                </ul>
-              ))}
+          <div className="technos">
+            <ul className="techno-list">
+              {backendTechnos &&
+                backendTechnos.map((techno) => <li>{techno.name}</li>)}
+            </ul>
           </div>
           <div>
             <div className="main-section-div">
-              <div>Status</div>
-              <div>Done</div>
               <div>{backendProjects[0].progress}%</div>
             </div>
           </div>

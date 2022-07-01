@@ -12,7 +12,7 @@ class TaskManager extends AbstractManager {
 
   findByProjectId(id) {
     return this.connection.query(
-      `select * from ${TaskManager.table}
+      `select task.name, task.description from ${TaskManager.table}
       inner join project on project.id = task.project_id
       where project.id = ?
       `,
