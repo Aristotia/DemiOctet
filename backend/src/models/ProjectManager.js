@@ -33,6 +33,11 @@ class ProjectManager extends AbstractManager {
       [id]
     );
   }
-}
 
+  findAllDescription() {
+    return this.connection.query(
+      `select description from  ${ProjectManager.table}`
+    );
+  }
+}
 module.exports = ProjectManager;
