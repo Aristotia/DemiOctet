@@ -1,7 +1,7 @@
 import React from "react";
 import "../assets/css/SliderMenu.css";
 
-function SliderMenu(props) {
+function SliderMenuSector(props) {
   const { list, category } = props;
   return (
     <div className="labelsearchbar">
@@ -19,8 +19,8 @@ function SliderMenu(props) {
             Merci de choisir une categorie
           </option>
           {list.map((element) => (
-            <option className="optionsearchbar" value={element.city}>
-              {element.city}
+            <option className="optionsearchbar" value={element}>
+              {element}
             </option>
           ))}
         </select>
@@ -29,4 +29,4 @@ function SliderMenu(props) {
   );
 }
 
-export default SliderMenu;
+export default SliderMenuSector;

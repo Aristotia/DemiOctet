@@ -1,8 +1,9 @@
-import React from "react";
-
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import SliderMenu from "./SliderMenu";
 import "../assets/css/SearchBar.css";
 import logo from "../assets/image/logo1.png";
+import SliderMenuSector from "./SliderMenuSector";
 
 function SearchBar({
   keyWordlist,
@@ -10,20 +11,44 @@ function SearchBar({
   paramFilter,
   setParamFilter,
 }) {
+  const [agenciesList, setAgenciesList] = useState();
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:5000/agencies`)
+      .then((res) => {
+        setAgenciesList(res.data);
+      })
+      .catch((err) => console.error(err));
+  }, []);
+  const sector = [
+    "Banque",
+    "Assurance",
+    "Mutuelles/Retraites",
+    "Telecoms",
+    "Multimedia",
+    "Retail",
+    "Defense",
+    "Aeronautique",
+    "Spatial",
+    "Automobile/Transport",
+  ];
   return (
     <form className="search-bar">
       <div className="searchcontainer">
         <img src={logo} alt="logo" className="logosearchbar" />
       </div>
       <div className="search-bar-container">
-        <SliderMenu
-          list={["cow", "tartine", "rhubarbe"]}
-          category="componentTest"
-          className="city-slider"
-        />
-        <SliderMenu
-          list={["crue", "brulée ", "saignante", "PARPAIIING"]}
-          category="Cuisson de tartine"
+        {agenciesList ? (
+          <SliderMenu
+            list={agenciesList}
+            category="Ville :"
+            className="city-slider"
+          />
+        ) : null}
+        <SliderMenuSector
+          list={sector}
+          category="Categorie :"
           className="cat-slider"
         />
         <div className="search-field">
