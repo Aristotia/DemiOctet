@@ -15,6 +15,14 @@ function SearchBar({
 
   useEffect(() => {
     axios
+      .get(`http://localhost:5000/projectsDescription`)
+      .then((res) => {
+        setAgenciesList(res.data);
+      })
+      .catch((err) => console.error(err));
+  }, []);
+  useEffect(() => {
+    axios
       .get(`http://localhost:5000/agencies`)
       .then((res) => {
         setAgenciesList(res.data);

@@ -13,6 +13,18 @@ class ProjectController {
       });
   };
 
+  static browseDescription = (req, res) => {
+    models.project
+      .findAllDescription()
+      .then(([rows]) => {
+        res.send(rows);
+      })
+      .catch((err) => {
+        console.error(err);
+        res.sendStatus(500);
+      });
+  };
+
   static read = (req, res) => {
     models.project
       .find(req.params.id)
