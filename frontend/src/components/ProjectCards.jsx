@@ -104,8 +104,10 @@ function ProjectCards() {
             </ul>
           </div>
           <div>
-            <div className="main-section-div">
-              <div>{backendProjects[0].progress}%</div>
+            <div className="main-section-div progressbar-container">
+              <div className="progressbar-content">
+                <h2>{backendProjects[0].progress}%</h2>
+              </div>
             </div>
           </div>
         </div>
